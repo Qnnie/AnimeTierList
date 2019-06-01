@@ -9,33 +9,70 @@ let B_Tier = [];
 let C_Tier = [];
 let D_Tier = [];
 let F_Tier = [];
+
+let rankS = 'S';
+let rankA = 'A';
+let rankB = 'B';
+let rankC = 'C';
+let rankD = 'D';
+let rankF = 'F';
+
+
 let Unranked = [];
 
 const emptyTiers = () => {
     while (animeList.length != 0) {
-        console.log('popping', animeList.pop());
+        animeList.pop();
     }
     while (S_Tier.length != 0) {
-        console.log('popping', S_Tier.pop());
+        S_Tier.pop();
     }
     while (A_Tier.length != 0) {
-        console.log('popping', A_Tier.pop());
+        A_Tier.pop();
     }
     while (B_Tier.length != 0) {
-        console.log('popping', B_Tier.pop());
+        B_Tier.pop();
     }
     while (C_Tier.length != 0) {
-        console.log('popping', C_Tier.pop());
+        C_Tier.pop();
     }
     while (D_Tier.length != 0) {
-        console.log('popping', D_Tier.pop());
+        D_Tier.pop();
     }
     while (F_Tier.length != 0) {
-        console.log('popping', F_Tier.pop());
+        F_Tier.pop();
     }
     while (Unranked.length != 0) {
-        console.log('popping', Unranked.pop());
+        Unranked.pop();
     }
+}
+
+const checkEmptyTier = () => {
+    console.log('in function');
+    if (S_Tier.length == 0) {
+        rankS = ' ';
+    }
+    if (A_Tier.length == 0) {
+        rankA = ' ';
+    }
+    if (B_Tier.length == 0) {
+        rankB = ' ';
+    }
+    if (C_Tier.length == 0) {
+        rankC = ' ';
+    }
+    if (D_Tier.length == 0) {
+        rankD = ' ';
+    }
+    if (F_Tier.length == 0) {
+        rankF = ' ';
+    }
+    console.log(rankS);
+    console.log(rankA);
+    console.log(rankB);
+    console.log(rankC);
+    console.log(rankD);
+    console.log(rankF);
 }
 
 const createTierList = () => {
@@ -92,6 +129,7 @@ const createTierList = () => {
             });
         }
     });
+    checkEmptyTier();
 }
 
 const printTierList = () => {
@@ -137,6 +175,13 @@ module.exports = {
     D_Tier,
     F_Tier,
     Unranked,
+    rankS,
+    rankA,
+    rankB,
+    rankC,
+    rankD,
+    rankF,
+    checkEmptyTier,
     createTierList,
     printTierList,
     emptyTiers

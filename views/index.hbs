@@ -4,82 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel='stylesheet' href='/css/style.css'>
-    <title>Anime Tier List</title>
+    <title>Tier List generator</title>
 </head>
 <body>
-    <header>
-        <img id='header-img' src='http://i44.tinypic.com/34jaww5.jpg'>
-        <h1>Welcome to Anime tier list</h1>
-        <h2>{{user}}'s Tier List</h2>
-        <hr>
-    </header>
-    <div id="container">
-        <div class="tier">
-            <div class="tier-rank" id='S-Rank'>
-                <h3 class ='rank'>S</h3>
-            </div>
-            <div class="anime">
-                {{#each S}}
-                <a href="{{this.url}}"> <div class="thumbnail-container">
-                <img class="thumbnail" src='{{this.image}}'></img></div></a>        
-                {{/each}}
-            </div>
-        </div>
-        <div class="tier">
-            <div class="tier-rank" id='A-Rank'>
-                <h3 class ='rank'>A</h3>
-            </div>
-            <div class="anime">
-                {{#each A}}
-                <a href="{{this.url}}"> <div class="thumbnail-container">
-                <img class="thumbnail" src='{{this.image}}'></img></div></a>        
-                {{/each}}
-            </div>
-        </div>
-        <div class="tier">
-            <div class="tier-rank" id='B-Rank'>
-                <h3 class ='rank'>B</h3>
-            </div>
-            <div class="anime">
-                {{#each B}}
-                <a href="{{this.url}}"> <div class="thumbnail-container">
-                <img class="thumbnail" src='{{this.image}}'></img></div></a>        
-                {{/each}}
-            </div>
-        </div>
-        <div class="tier">
-            <div class="tier-rank" id='C-Rank'>
-                <h3 class ='rank'>C</h3>
-            </div>
-            <div class="anime">
-                {{#each C}}
-                <a href="{{this.url}}"> <div class="thumbnail-container">
-                <img class="thumbnail" src='{{this.image}}'></img></div></a>        
-                {{/each}}
-            </div>
-        </div>
-        <div class="tier">
-            <div class="tier-rank" id='D-Rank'>
-                <h3 class ='rank'>D</h3>
-            </div>
-            <div class="anime">
-                {{#each D}}
-                <a href="{{this.url}}"> <div class="thumbnail-container">
-                <img class="thumbnail" src='{{this.image}}'></img></div></a>        
-                {{/each}}
-            </div>
-        </div>
-        <div class="tier">
-            <div class="tier-rank" id='F-Rank'>
-                <h3 class ='rank'>F</h3>
-            </div>
-            <div class="anime">
-                {{#each F}}
-                <a href="{{this.url}}"> <div class="thumbnail-container">
-                <img class="thumbnail" src='{{this.image}}'></img></div></a>        
-                {{/each}}
-            </div>
-        </div>
+    <h1>Welcome to anime tier list</h1>
+    <input id='username' type="text" name="username" value="Username">
+    <button id='listGenerator'>Generate List</button>
+    <script src='/js/listRedirect.js'></script>
 </body>
 </html>

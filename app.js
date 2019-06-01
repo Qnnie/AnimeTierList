@@ -13,7 +13,7 @@ app.set('view engine', 'hbs');
 
 app.get('', (req, res) => {
     if (!req.query.user) {
-        return res.send('please provide a query');
+        return res.render('index');
     }
     // Get you an object containing all the entries with status, score... from this user's watch list
     malScraper.getWatchListFromUser(req.query.user, tierList.after, tierList.type)
@@ -30,7 +30,7 @@ app.get('', (req, res) => {
             });
         });
         tierList.createTierList();
-        res.render('index', {
+        res.render('tierList', {
             user: req.query.user,
             S: tierList.S_Tier,
             A: tierList.A_Tier,
@@ -38,10 +38,19 @@ app.get('', (req, res) => {
             C: tierList.C_Tier,
             D: tierList.D_Tier,
             F: tierList.F_Tier,
-            unranked: tierList.unranked
+            unranked: tierList.unranked,
+            rankS: tierList.rankS,
+            rankA: tierList.rankA,
+            rankB: tierList.rankB,
+            rankC: tierList.rankC,
+            rankD: tierList.rankD,
+            rankF: tierList.rankF
         });
     })
-    .catch((err) => console.log(err));
+    .catch((err) => res.render('404', {
+        errorMsg: `${req.query.user} does not exist`
+        })    
+    );
 });
 
 app.listen(3000, () => {
