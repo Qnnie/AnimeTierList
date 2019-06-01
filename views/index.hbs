@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel='stylesheet' href='/css/style.css'>
+    <title>Anime Tier List</title>
+</head>
+<body>
+    <h1>Welcome to Anime tier list</h1>
+    <h2>{{user}}'s Tier List</h2>
+    <hr>
+    <h3>S Tier: </h3>
+        {{#each S}}
+        <a href="{{this.url}}"> <div class="thumbnail-container">
+        <img class="thumbnail" src='{{this.image}}'></img></div></a>        
+        {{/each}}
+    <h3>A Tier: </h3>
+        {{#each A}}
+        <a href="{{this.url}}"> <div class="thumbnail-container">
+        <img class="thumbnail" src='{{this.image}}'></img></div></a>
+        {{/each}}
+    <h3>B Tier: </h3>
+        {{#each B}}
+        <a href="{{this.url}}"> <div class="thumbnail-container">
+        <img class="thumbnail" src='{{this.image}}'></img></div></a>
+        {{/each}}
+    <h3>C Tier: </h3>
+        {{#each C}}
+        <a href="{{this.url}}"> <div class="thumbnail-container">
+        <img class="thumbnail" src='{{this.image}}'></img></div></a>       
+        {{/each}}
+    <h3>D Tier: </h3>
+        {{#each D}}
+        <a href="{{this.url}}"> <div class="thumbnail-container">
+        <img class="thumbnail" src='{{this.image}}'></img></div></a>            
+        {{/each}}
+    <h3>F Tier: </h3>
+        {{#each F}}
+        <a href="{{this.url}}"> <div class="thumbnail-container">
+        <img class="thumbnail" src='{{this.image}}'></img></div></a>     
+        {{/each}}
+    <h3>Unranked: </h3>
+        {{#each unranked}}
+        <a href="{{this.url}}"> <div class="thumbnail-container">
+        <img class="thumbnail" src='{{this.image}}'></img></div></a> 
+        {{/each}}
+
+</body>
+</html>
