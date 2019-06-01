@@ -1,9 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Merriweather|Nunito&display=swap');
+
 :root {
     --S: background: 
 }
 
 * {
     margin: 0;
+    font-family: 'Nunito', sans-serif;
 }
 
 header {
@@ -13,6 +16,7 @@ header {
 #container {
     background: #1D1D1E;
     color: white;
+    text-shadow: 3px 3px black;
 }
 
 .thumbnail-container {
@@ -32,7 +36,7 @@ header {
 .tier {
     display: grid;
     grid-template-columns: 10% 90%;
-    grid-column-gap: 0; 
+    grid-column-gap: 1em; 
 }
 
 .tier-rank {
@@ -64,7 +68,7 @@ header {
 }
 
 .rank {
-    font-size: 8.5rem;
+    font-size: 6.5rem;
     position: absolute;
     left: 50%;
     top: 50%;
