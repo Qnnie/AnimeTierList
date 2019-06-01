@@ -11,6 +11,33 @@ let D_Tier = [];
 let F_Tier = [];
 let Unranked = [];
 
+const emptyTiers = () => {
+    while (animeList.length != 0) {
+        console.log('popping', animeList.pop());
+    }
+    while (S_Tier.length != 0) {
+        console.log('popping', S_Tier.pop());
+    }
+    while (A_Tier.length != 0) {
+        console.log('popping', A_Tier.pop());
+    }
+    while (B_Tier.length != 0) {
+        console.log('popping', B_Tier.pop());
+    }
+    while (C_Tier.length != 0) {
+        console.log('popping', C_Tier.pop());
+    }
+    while (D_Tier.length != 0) {
+        console.log('popping', D_Tier.pop());
+    }
+    while (F_Tier.length != 0) {
+        console.log('popping', F_Tier.pop());
+    }
+    while (Unranked.length != 0) {
+        console.log('popping', Unranked.pop());
+    }
+}
+
 const createTierList = () => {
     animeList.forEach((show) => {
         switch(show.score) {
@@ -67,7 +94,7 @@ const createTierList = () => {
     });
 }
 
-const printTierList = (index) => {
+const printTierList = () => {
     console.log(`S:`);
     for (let i = 0; i<S_Tier.length; i++) {
         console.log(S_Tier[i].title);
@@ -111,5 +138,6 @@ module.exports = {
     F_Tier,
     Unranked,
     createTierList,
-    printTierList
+    printTierList,
+    emptyTiers
 }

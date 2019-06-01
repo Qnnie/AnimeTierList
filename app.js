@@ -11,9 +11,14 @@ app.use(express.static(publicDirectoryPath));
 
 app.set('view engine', 'hbs');
 
-// Get you an object containing all the entries with status, score... from this user's watch list
-malScraper.getWatchListFromUser(tierList.username, tierList.after, tierList.type)
+app.get('', (req, res) => {
+    if (!req.query.user) {
+        return res.send('please provide a query');
+    }
+    // Get you an object containing all the entries with status, score... from this user's watch list
+    malScraper.getWatchListFromUser(req.query.user, tierList.after, tierList.type)
     .then((data) => {
+        tierList.emptyTiers();
         data.forEach((anime) => {
             const anime_image = anime.animeImagePath.replace('/r/96x136','');
             const anime_url = `https://myanimelist.net${anime.animeUrl}`;
@@ -25,21 +30,18 @@ malScraper.getWatchListFromUser(tierList.username, tierList.after, tierList.type
             });
         });
         tierList.createTierList();
-        tierList.printTierList();
+        res.render('index', {
+            user: req.query.user,
+            S: tierList.S_Tier,
+            A: tierList.A_Tier,
+            B: tierList.B_Tier,
+            C: tierList.C_Tier,
+            D: tierList.D_Tier,
+            F: tierList.F_Tier,
+            unranked: tierList.unranked
+        });
     })
     .catch((err) => console.log(err));
-
-app.get('', (req, res) => {
-    res.render('index', {
-        user: tierList.username,
-        S: tierList.S_Tier,
-        A: tierList.A_Tier,
-        B: tierList.B_Tier,
-        C: tierList.C_Tier,
-        D: tierList.D_Tier,
-        F: tierList.F_Tier,
-        unranked: tierList.unranked
-    })
 });
 
 app.listen(3000, () => {
