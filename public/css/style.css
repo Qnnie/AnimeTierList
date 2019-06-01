@@ -1,8 +1,25 @@
+:root {
+    --S: background: 
+}
+
+* {
+    margin: 0;
+}
+
+header {
+    text-align: center;
+}
+
+#container {
+    background: #1D1D1E;
+    color: white;
+}
+
 .thumbnail-container {
     position: relative;
     display: inline-block;
-    width: 120px;
-    height: 175px;
+    width: 100px;
+    height: 145px;
 }
 
 .thumbnail {
@@ -10,4 +27,47 @@
     object-position: center;
     width: 100%;
     height: 100%;
+}
+
+.tier {
+    display: grid;
+    grid-template-columns: 10% 90%;
+    grid-column-gap: 0; 
+}
+
+.tier-rank {
+    position: relative;
+}
+
+#S-Rank {
+    background: #FF7D80;
+}
+
+#A-Rank {
+    background: #FFBD84;
+}
+
+#B-Rank {
+    background: #FFDD87;
+}
+
+#C-Rank {
+    background: #FEFF8A;
+}
+
+#D-Rank {
+    background: #B4FF89;
+}
+
+#F-Rank {
+    background: #63FF89;
+}
+
+.rank {
+    font-size: 8.5rem;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }

@@ -11,12 +11,6 @@ let D_Tier = [];
 let F_Tier = [];
 let Unranked = [];
 
-G_Tier = [
-    {title: 'Death Note', imageUrl: 'https://something.com'},
-    {title: 'Death Note', imageUrl: 'https://something.com'},
-    {title: 'Death Note', imageUrl: 'https://something.com'},
-]
-
 const createTierList = () => {
     animeList.forEach((show) => {
         switch(show.score) {

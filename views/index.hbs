@@ -8,44 +8,77 @@
     <title>Anime Tier List</title>
 </head>
 <body>
-    <h1>Welcome to Anime tier list</h1>
-    <h2>{{user}}'s Tier List</h2>
-    <hr>
-    <h3>S Tier: </h3>
-        {{#each S}}
-        <a href="{{this.url}}"> <div class="thumbnail-container">
-        <img class="thumbnail" src='{{this.image}}'></img></div></a>        
-        {{/each}}
-    <h3>A Tier: </h3>
-        {{#each A}}
-        <a href="{{this.url}}"> <div class="thumbnail-container">
-        <img class="thumbnail" src='{{this.image}}'></img></div></a>
-        {{/each}}
-    <h3>B Tier: </h3>
-        {{#each B}}
-        <a href="{{this.url}}"> <div class="thumbnail-container">
-        <img class="thumbnail" src='{{this.image}}'></img></div></a>
-        {{/each}}
-    <h3>C Tier: </h3>
-        {{#each C}}
-        <a href="{{this.url}}"> <div class="thumbnail-container">
-        <img class="thumbnail" src='{{this.image}}'></img></div></a>       
-        {{/each}}
-    <h3>D Tier: </h3>
-        {{#each D}}
-        <a href="{{this.url}}"> <div class="thumbnail-container">
-        <img class="thumbnail" src='{{this.image}}'></img></div></a>            
-        {{/each}}
-    <h3>F Tier: </h3>
-        {{#each F}}
-        <a href="{{this.url}}"> <div class="thumbnail-container">
-        <img class="thumbnail" src='{{this.image}}'></img></div></a>     
-        {{/each}}
-    <h3>Unranked: </h3>
-        {{#each unranked}}
-        <a href="{{this.url}}"> <div class="thumbnail-container">
-        <img class="thumbnail" src='{{this.image}}'></img></div></a> 
-        {{/each}}
-
+    <header>
+        <h1>Welcome to Anime tier list</h1>
+        <h2>{{user}}'s Tier List</h2>
+        <hr>
+    </header>
+    <div id="container">
+        <div class="tier">
+            <div class="tier-rank" id='S-Rank'>
+                <h3 class ='rank'>S</h3>
+            </div>
+            <div class="anime">
+                {{#each S}}
+                <a href="{{this.url}}"> <div class="thumbnail-container">
+                <img class="thumbnail" src='{{this.image}}'></img></div></a>        
+                {{/each}}
+            </div>
+        </div>
+        <div class="tier">
+            <div class="tier-rank" id='A-Rank'>
+                <h3 class ='rank'>A</h3>
+            </div>
+            <div class="anime">
+                {{#each A}}
+                <a href="{{this.url}}"> <div class="thumbnail-container">
+                <img class="thumbnail" src='{{this.image}}'></img></div></a>        
+                {{/each}}
+            </div>
+        </div>
+        <div class="tier">
+            <div class="tier-rank" id='B-Rank'>
+                <h3 class ='rank'>B</h3>
+            </div>
+            <div class="anime">
+                {{#each B}}
+                <a href="{{this.url}}"> <div class="thumbnail-container">
+                <img class="thumbnail" src='{{this.image}}'></img></div></a>        
+                {{/each}}
+            </div>
+        </div>
+        <div class="tier">
+            <div class="tier-rank" id='C-Rank'>
+                <h3 class ='rank'>C</h3>
+            </div>
+            <div class="anime">
+                {{#each C}}
+                <a href="{{this.url}}"> <div class="thumbnail-container">
+                <img class="thumbnail" src='{{this.image}}'></img></div></a>        
+                {{/each}}
+            </div>
+        </div>
+        <div class="tier">
+            <div class="tier-rank" id='D-Rank'>
+                <h3 class ='rank'>D</h3>
+            </div>
+            <div class="anime">
+                {{#each D}}
+                <a href="{{this.url}}"> <div class="thumbnail-container">
+                <img class="thumbnail" src='{{this.image}}'></img></div></a>        
+                {{/each}}
+            </div>
+        </div>
+        <div class="tier">
+            <div class="tier-rank" id='F-Rank'>
+                <h3 class ='rank'>F</h3>
+            </div>
+            <div class="anime">
+                {{#each F}}
+                <a href="{{this.url}}"> <div class="thumbnail-container">
+                <img class="thumbnail" src='{{this.image}}'></img></div></a>        
+                {{/each}}
+            </div>
+        </div>
 </body>
 </html>
