@@ -1,192 +1,86 @@
-const username = process.argv[2];
-const after = 0;
-const type = 'anime'; // can be either `anime` or `manga`
+const scraper = require('mal-scraper');
 
-let animeList = [];
-let S_Tier = [];
-let A_Tier = [];
-let B_Tier = [];
-let C_Tier = [];
-let D_Tier = [];
-let F_Tier = [];
+const DEFAULT_MAL_PARAMS = {
+    after: 0,
+    type: "anime"
+};
 
-let rankS = 'S';
-let rankA = 'A';
-let rankB = 'B';
-let rankC = 'C';
-let rankD = 'D';
-let rankF = 'F';
-
-
-let Unranked = [];
-
-const emptyTiers = () => {
-    while (animeList.length != 0) {
-        animeList.pop();
-    }
-    while (S_Tier.length != 0) {
-        S_Tier.pop();
-    }
-    while (A_Tier.length != 0) {
-        A_Tier.pop();
-    }
-    while (B_Tier.length != 0) {
-        B_Tier.pop();
-    }
-    while (C_Tier.length != 0) {
-        C_Tier.pop();
-    }
-    while (D_Tier.length != 0) {
-        D_Tier.pop();
-    }
-    while (F_Tier.length != 0) {
-        F_Tier.pop();
-    }
-    while (Unranked.length != 0) {
-        Unranked.pop();
-    }
+/**
+ * Definition of what the ranks
+ * that MAL has corresponds to.
+ */
+const tiers = {
+    10: "S",
+    9: "A",
+    8: "B",
+    7: "C",
+    6: "D",
+    4: "F",
+    3: "F",
+    5: "F",
+    2: "F",
+    1: "F",
+    0: "unranked",
 }
 
-const checkEmptyTier = () => {
-    console.log('in function');
-    if (S_Tier.length == 0) {
-        rankS = ' ';
-    }
-    if (A_Tier.length == 0) {
-        rankA = ' ';
-    }
-    if (B_Tier.length == 0) {
-        rankB = ' ';
-    }
-    if (C_Tier.length == 0) {
-        rankC = ' ';
-    }
-    if (D_Tier.length == 0) {
-        rankD = ' ';
-    }
-    if (F_Tier.length == 0) {
-        rankF = ' ';
-    }
-    console.log(rankS);
-    console.log(rankA);
-    console.log(rankB);
-    console.log(rankC);
-    console.log(rankD);
-    console.log(rankF);
+/**
+ * Attaches metadata to a single anime
+ * fetched from MAL
+ * @param {MalAnimeResponse} anime 
+ * @returns {Anime}
+ */
+const transformAnime = (anime) => ({
+    score: anime.score,
+    title: anime.animeTitle,
+    image: anime.animeImagePath.replace('/r/96x136',''),
+    url: `https://myanimelist.net${anime.animeUrl}`,
+    tier: tiers[anime.score]
+})
+
+/**
+ * Fetches a user's tier list from MAL with
+ * added metadata
+ * @param {String} user
+ * @param {TierListOptions} options
+ */
+const fetchTierLists = async (user, { after , type } = DEFAULT_MAL_PARAMS) => {
+    const tiers = await scraper.getWatchListFromUser(user, after, type);
+    return tiers.map(transformAnime);
 }
 
-const createTierList = () => {
-    animeList.forEach((show) => {
-        switch(show.score) {
-            case 10:
-                S_Tier.push({
-                    title: show.title,
-                    image: show.image,
-                    url: show.url
-                });
-                break;
-            case 9: 
-                A_Tier.push({
-                    title: show.title,
-                    image: show.image,
-                    url: show.url
-                });
-                break;
-            case 8: 
-                B_Tier.push({
-                    title: show.title,
-                    image: show.image,
-                    url: show.url
-                });
-                break;
-            case 7: 
-                C_Tier.push({
-                    title: show.title,
-                    image: show.image,
-                    url: show.url
-                });
-                break;
-            case 6: 
-                D_Tier.push({
-                    title: show.title,
-                    image: show.image,
-                    url: show.url
-                });
-                break;
-            case 5:
-            case 4:
-            case 3:
-            case 2:
-            case 1:
-                F_Tier.push({
-                    title: show.title,
-                    image: show.image,
-                    url: show.url
-                });
-                break;
-            case 0: 
-                Unranked.push({
-                    title: show.title,
-                    image: show.image,
-                    url: show.url
-                });
-                break;
+/**
+ * Tallying animes with attached tier list 
+ * metadata under a single object containing tiers
+ * @param {Anime[]} animes 
+ */
+const tallyAnimeScores = (animes) => {
+    // When we tally these scores, the animes that don't have
+    // any rankings, like no S tier, will automatically be dropped because they 
+    // will never be attempted to get converted to an array of animes
+    // (because they don't exist)
+    return animes.reduce((state, anime) => {
+        const { tier } = anime;
+        // the current animes that are in the object being built
+        const currentTier = state[tier]
+        // the updated array, empty if we never added an anime of this tier before
+        const newAnimeState = currentTier || [];
+
+        if (currentTier) {
+            newAnimeState.push(anime)
         }
-    });
-    checkEmptyTier();
+
+        return {
+            // spread the previous state in to include all previous data
+            ...state,
+            // set the new tier to equal every anime from before
+            // plus the one we just pushed on the updated state
+            [tier]: newAnimeState
+        }
+    }, {} /* initial state */);
 }
 
-const printTierList = () => {
-    console.log(`S:`);
-    for (let i = 0; i<S_Tier.length; i++) {
-        console.log(S_Tier[i].title);
-    }
-    console.log(`A:`);
-    for (let i = 0; i<A_Tier.length; i++) {
-        console.log(A_Tier[i].title);
-    }
-    console.log(`B:`);
-    for (let i = 0; i<B_Tier.length; i++) {
-        console.log(B_Tier[i].title);
-    }
-    console.log(`C:`);
-    for (let i = 0; i<C_Tier.length; i++) {
-        console.log(C_Tier[i].title);
-    }
-    console.log(`D:`);
-    for (let i = 0; i<D_Tier.length; i++) {
-        console.log(D_Tier[i].title);
-    }
-    console.log(`F:`);
-    for (let i = 0; i<F_Tier.length; i++) {
-        console.log(F_Tier[i].title);
-    }
-    console.log(`Unranked:`);
-    for (let i = 0; i<Unranked.length; i++) {
-        console.log(Unranked[i].title);
-    }
-}
 
 module.exports = {
-    username,
-    after,
-    type,
-    animeList,
-    S_Tier,
-    A_Tier,
-    B_Tier,
-    C_Tier,
-    D_Tier,
-    F_Tier,
-    Unranked,
-    rankS,
-    rankA,
-    rankB,
-    rankC,
-    rankD,
-    rankF,
-    checkEmptyTier,
-    createTierList,
-    printTierList,
-    emptyTiers
+    fetchTierLists,
+    tallyAnimeScores
 }
