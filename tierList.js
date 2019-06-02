@@ -9,15 +9,6 @@ let B_Tier = [];
 let C_Tier = [];
 let D_Tier = [];
 let F_Tier = [];
-
-let rankS = 'S';
-let rankA = 'A';
-let rankB = 'B';
-let rankC = 'C';
-let rankD = 'D';
-let rankF = 'F';
-
-
 let Unranked = [];
 
 const emptyTiers = () => {
@@ -45,34 +36,6 @@ const emptyTiers = () => {
     while (Unranked.length != 0) {
         Unranked.pop();
     }
-}
-
-const checkEmptyTier = () => {
-    console.log('in function');
-    if (S_Tier.length == 0) {
-        rankS = ' ';
-    }
-    if (A_Tier.length == 0) {
-        rankA = ' ';
-    }
-    if (B_Tier.length == 0) {
-        rankB = ' ';
-    }
-    if (C_Tier.length == 0) {
-        rankC = ' ';
-    }
-    if (D_Tier.length == 0) {
-        rankD = ' ';
-    }
-    if (F_Tier.length == 0) {
-        rankF = ' ';
-    }
-    console.log(rankS);
-    console.log(rankA);
-    console.log(rankB);
-    console.log(rankC);
-    console.log(rankD);
-    console.log(rankF);
 }
 
 const createTierList = () => {
@@ -133,7 +96,6 @@ const createTierList = () => {
                 break;
         }
     });
-    checkEmptyTier();
 }
 
 const printTierList = () => {
@@ -179,13 +141,6 @@ module.exports = {
     D_Tier,
     F_Tier,
     Unranked,
-    rankS,
-    rankA,
-    rankB,
-    rankC,
-    rankD,
-    rankF,
-    checkEmptyTier,
     createTierList,
     printTierList,
     emptyTiers

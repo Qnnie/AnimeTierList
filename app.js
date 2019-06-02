@@ -39,12 +39,6 @@ app.get('', (req, res) => {
             D: tierList.D_Tier,
             F: tierList.F_Tier,
             unranked: tierList.unranked,
-            rankS: tierList.rankS,
-            rankA: tierList.rankA,
-            rankB: tierList.rankB,
-            rankC: tierList.rankC,
-            rankD: tierList.rankD,
-            rankF: tierList.rankF
         });
     })
     .catch((err) => res.render('404', {

@@ -49,6 +49,11 @@ header {
 
 .tier-rank {
     position: relative;
+    min-height: 145px;
+}
+
+.anime {
+    min-height: 145px;
 }
 
 #S-Rank {
