@@ -3,16 +3,6 @@ const path = require('path');
 const hbs = require('hbs');
 const malScraper = require('mal-scraper');
 const tierList = require('./tierList');
-const Handlebars = require('handlebars');
-
-Handlebars.registerPartial('tier', `
-    <div class="tier">
-        <div class="tier-rank" id='{{ this.tier }}-Rank'>
-            <h3 class='rank'>{{ this.tier }}</h3>
-        </div>
-        {{> @partial-block}}
-    </div>
-`)
 
 const app = express();
 
