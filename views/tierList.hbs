@@ -1,3 +1,25 @@
+{{#*inline "tier"}}
+    <div class="tier">
+        <div class="tier-rank" id='{{ this.tier }}-Rank'>
+            <h3 class='rank'>{{ this.tier }}</h3>
+        </div>
+        <div class="anime">
+            {{> @partial-block}}
+        </div>
+    </div>
+{{/inline}}
+
+{{#*inline "tier-block" }}
+    {{#if this.animes}}
+        {{#> tier tier=this.tier}}
+            {{#each this.animes}}
+                <a href="{{this.url}}"> <div class="thumbnail-container">
+                <img class="thumbnail" src='{{this.image}}'></img></div></a>        
+            {{/each}}
+        {{/tier}}
+    {{/if}}
+{{/inline}}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,71 +38,12 @@
         <hr>
     </header>
     <div id="container">
-        <div class="tier">
-            <div class="tier-rank" id='S-Rank'>
-                <h3 class ='rank'>S</h3>
-            </div>
-            <div class="anime">
-                {{#each S}}
-                <a href="{{this.url}}"> <div class="thumbnail-container">
-                <img class="thumbnail" src='{{this.image}}'></img></div></a>        
-                {{/each}}
-            </div>
-        </div>
-        <div class="tier">
-            <div class="tier-rank" id='A-Rank'>
-                <h3 class ='rank'>A</h3>
-            </div>
-            <div class="anime">
-                {{#each A}}
-                <a href="{{this.url}}"> <div class="thumbnail-container">
-                <img class="thumbnail" src='{{this.image}}'></img></div></a>        
-                {{/each}}
-            </div>
-        </div>
-        <div class="tier">
-            <div class="tier-rank" id='B-Rank'>
-                <h3 class ='rank'>B</h3>
-            </div>
-            <div class="anime">
-                {{#each B}}
-                <a href="{{this.url}}"> <div class="thumbnail-container">
-                <img class="thumbnail" src='{{this.image}}'></img></div></a>        
-                {{/each}}
-            </div>
-        </div>
-        <div class="tier">
-            <div class="tier-rank" id='C-Rank'>
-                <h3 class ='rank'>C</h3>
-            </div>
-            <div class="anime">
-                {{#each C}}
-                <a href="{{this.url}}"> <div class="thumbnail-container">
-                <img class="thumbnail" src='{{this.image}}'></img></div></a>        
-                {{/each}}
-            </div>
-        </div>
-        <div class="tier">
-            <div class="tier-rank" id='D-Rank'>
-                <h3 class ='rank'>D</h3>
-            </div>
-            <div class="anime">
-                {{#each D}}
-                <a href="{{this.url}}"> <div class="thumbnail-container">
-                <img class="thumbnail" src='{{this.image}}'></img></div></a>        
-                {{/each}}
-            </div>
-        </div>
-        <div class="tier">
-            <div class="tier-rank" id='F-Rank'>
-                <h3 class ='rank'>F</h3>
-            </div>
-            <div class="anime">
-                {{#each F}}
-                <a href="{{this.url}}"> <div class="thumbnail-container">
-                <img class="thumbnail" src='{{this.image}}'></img></div></a>        
-                {{/each}}
-            </div>
+        {{> tier-block tier='S' animes=this.animes.S}}
+        {{> tier-block tier='A' animes=this.animes.A}}
+        {{> tier-block tier='B' animes=this.animes.B}}
+        {{> tier-block tier='C' animes=this.animes.C}}
+        {{> tier-block tier='D' animes=this.animes.D}}
+        {{> tier-block tier='F' animes=this.animes.F}}
         </div>
 </body>
 </html>
