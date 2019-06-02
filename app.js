@@ -29,7 +29,7 @@ app.get('', async (req, res) => {
     	break
     	case 'mal':
     	default:
-    	    listEntries = await mal.fetchTierLists(req.query.user);
+            listEntries = await mal.fetchTierLists(req.query.user);
     	break
     }
 
