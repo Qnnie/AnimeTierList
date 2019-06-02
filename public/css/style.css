@@ -1,7 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Merriweather|Nunito&display=swap');
 
 :root {
-    --S: background: 
+    --S: #6E44FF;
+    --A: #B892FF;
+    --B: #FFC2E2;
+    --C: #FF90B3;
+    --D: #EF7A85;
+    --F: #E85F5C;
+    --imgH: 130px;
+    --imgW: 100px;
 }
 
 * {
@@ -10,6 +17,7 @@
 }
 
 header {
+    background: #93C0E4;
     position: relative;
     text-align: center;
 }
@@ -21,17 +29,21 @@ header {
     height: auto;
 }
 
-#container {
-    background: #1D1D1E;
+body {
+    background: rgb(39, 39, 39);
     color: white;
     text-shadow: 3px 3px black;
+}
+
+header h2 {
+    font-size: 3.5rem;
 }
 
 .thumbnail-container {
     position: relative;
     display: inline-block;
-    width: 100px;
-    height: 145px;
+    width: var(--imgW);
+    height: var(--imgH);
 }
 
 .thumbnail {
@@ -49,35 +61,35 @@ header {
 
 .tier-rank {
     position: relative;
-    min-height: 145px;
+    min-height: var(--imgH);
 }
 
 .anime {
-    min-height: 145px;
+    min-height: var(--imgH);
 }
 
 #S-Rank {
-    background: #FF7D80;
+    background: var(--S);
 }
 
 #A-Rank {
-    background: #FFBD84;
+    background: var(--A);
 }
 
 #B-Rank {
-    background: #FFDD87;
+    background: var(--B);
 }
 
 #C-Rank {
-    background: #FEFF8A;
+    background: var(--C);
 }
 
 #D-Rank {
-    background: #B4FF89;
+    background: var(--D);
 }
 
 #F-Rank {
-    background: #63FF89;
+    background: var(--F);
 }
 
 .rank {
