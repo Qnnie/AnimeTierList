@@ -1,15 +1,19 @@
 @import url('https://fonts.googleapis.com/css?family=Merriweather|Nunito&display=swap');
 
+:root {
+    --button: #69c26d;
+    --tinted-button: #47904b;
+    --shadow: 0 1px 3px rgba(0,0,0, 0.12), 0 1px 2px rgba(0,0,0, 0.24);
+    --font-family: 'Nunito', Roboto, sans-serif;
+}
+
 * {
     margin: 0;
 }
 
-body {
-    font-family: 'Nunito', sans-serif;
-}
-
 h1 {
-    color: #383838;
+    color: #3d3d3d;
+    font-family: var(--font-family);
 }
 
 img {
@@ -17,12 +21,75 @@ img {
     height: auto;
 }
 
+.title {
+    font-size: 18pt;
+}
+
+.home-wrapper {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.user-info {
+    display: flex;
+    flex-direction: column;
+    min-width: 80%;
+}
+
+.home-left {
+    grid-area: user-info;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-info > * {
+    margin-bottom: 10px;
+}
+
+.home-right {
+    grid-area: image;
+}
+
+@media (min-width: 800px) and (max-width: 1024px) {
+    .title {
+        font-size: 26pt;
+    }
+}
+
+@media (max-width: 1024px) {
+    /* hiding image on mobile */
+    .home-right {
+        display: none;
+    }
+    #container {
+        grid-gap: 0 !important;
+    }
+    .title {
+        font-size: 26pt;
+    }
+}
+
+.search {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    border: #d8d2d2 1px solid;
+    border-radius: 4px;
+}
+
+.search i {
+    margin: 10px;
+}
+
 #container {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    padding: 10px;
+    display: grid;
+    grid-gap: 15px;
+    grid-template-areas: "user-info image";
     max-width: 800px;
 }
 
@@ -31,31 +98,41 @@ img {
 }
 
 #username {
+    width: 100%;
+    max-width: 100%;
+    flex: 1;
     padding: 7px 14px;
-    font-size: 24px;
+    font-size: 22px;
+    margin: 0;
     outline: none;
-    border: 2px solid #C7BACA;   
-    color: #8f8d8d;
+    border: 0;
+    color: #2a2a2a;
 }
 
 button {
-    background: #C7BACA;
-    font-size: 24px;
+    background: var(--button);
+    min-height: 40px;
+    box-shadow: var(--shadow);
+    font-size: 18px;
     color: white;
+    font-weight: lighter;
     padding: 7px 14px;
     outline: none;
-    border: 2px solid #C7BACA;    
+    border: none;
+    border-radius: 4px;
     transition: all .4s;
 }
     
 button:hover {
-    background: transparent;
-    color: #C7BACA;
+    background: var(--tinted-button);
     cursor: pointer;
 }
 
 @media only screen and (max-width: 800px) {
     button {
         margin: 10px 0px;
+    }
+    .title {
+        font-size: 20pt !important;
     }
 }
