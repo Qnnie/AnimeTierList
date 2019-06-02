@@ -121,6 +121,6 @@ header h2 {
     }
     .thumbnail-container {
         width: 32%;
-        height: 30%;
+        height: 200px;
     }
 }
