@@ -34,13 +34,6 @@ const fetchTierLists = async (user, { after , type } = DEFAULT_MAL_PARAMS) => {
     const iteration3 = await scraper.getWatchListFromUser(user, 600, type);
     tiers = tiers.concat(iteration3);
 
-    Promise.all([scraper.getWatchListFromUser(user, after, type),scraper.getWatchListFromUser(user, 300, type), scraper.getWatchListFromUser(user, 600, type)])
-    .then((anime) => {
-        tiers = anime;
-    })
-    .catch( () => {
-        console.log('Failed request');
-    })
     return tiers.map(transformAnime);
 }
 
