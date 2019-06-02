@@ -5,13 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png">
+    <link rel="stylesheet" href='/css/main.css'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Tier List generator</title>
 </head>
 <body>
-    <h1>Welcome to anime tier list</h1>
-    <input id='username' type="text" name="username" value="Username">
-    <button id='listGenerator'>Generate List</button>
-    <script src='/js/listRedirect.js'></script>
+    <div id="container">
+        <img src='../images/mascot.jpg'>
+        <h1>Welcome to anime tier list</h1>
+        <input id='username' type="text" name="username" value="" placeholder="MAL Username" autofocus="autofocus">
+        <button id='listGenerator'>Generate List</button>
+        <script src='/js/listRedirect.js'></script>
+    </div>
 </body>
 </html>

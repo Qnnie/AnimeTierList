@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css?family=Merriweather|Nunito&display=swap');
+
+* {
+    margin: 0;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+}
+
+h1 {
+    color: black;
+}
+
+img {
+    width: 150px;
+    height: auto;
+}
+
+#container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    max-width: 800px;
+}
+
+#container h1 {
+    font-size: 2.5rem;
+}
+
+#username {
+    padding: 7px 14px;
+    font-size: 24px;
+    outline: none;
+    border: 2px solid #C7BACA;   
+    color: #8f8d8d;
+}
+
+button {
+    background: #C7BACA;
+    font-size: 24px;
+    color: white;
+    padding: 7px 14px;
+    border-radius: 10px;
+    outline: none;
+    border: 2px solid #C7BACA;    
+    transition: all .4s;
+}
+    
+button:hover {
+    background: transparent;
+    color: #C7BACA;
+}
