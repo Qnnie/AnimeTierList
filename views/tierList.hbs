@@ -13,7 +13,7 @@
     {{#if this.animes}}
         {{#> tier tier=this.tier}}
             {{#each this.animes}}
-                <a href="{{this.url}}"> <div class="thumbnail-container">
+                <a href="{{this.url}}" target="_blank"> <div class="thumbnail-container">
                 <img class="thumbnail" src='{{this.image}}'></img></div></a>        
             {{/each}}
         {{/tier}}
@@ -27,7 +27,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png">
     <link rel='stylesheet' href='/css/style.css'>
     <title>Anime Tier List</title>
 </head>
@@ -45,6 +45,6 @@
         {{> tier-block tier='C' animes=this.animes.C}}
         {{> tier-block tier='D' animes=this.animes.D}}
         {{> tier-block tier='F' animes=this.animes.F}}
-        </div>
+    </div>
 </body>
 </html>
