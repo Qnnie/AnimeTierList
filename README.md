@@ -10,7 +10,7 @@ request <3
 How to run locally
 ------------------------------
 <ol>
-  <li>open up command line too</li>
+  <li>open up command line tool for the following commands</li>
   <li>git clone https://github.com/Qnnie/AnimeTierList</li>
   <li>cd AnimeTierList</li>
   <li>npm install {make sure you're in the directory}</li>
