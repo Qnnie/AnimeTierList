@@ -113,6 +113,17 @@ const createTierList = () => {
                     url: show.url
                 });
                 break;
+            case 5:
+            case 4:
+            case 3:
+            case 2:
+            case 1:
+                F_Tier.push({
+                    title: show.title,
+                    image: show.image,
+                    url: show.url
+                });
+                break;
             case 0: 
                 Unranked.push({
                     title: show.title,
@@ -120,13 +131,6 @@ const createTierList = () => {
                     url: show.url
                 });
                 break;
-        }
-        if (show.score <= 5 && show.score != 0) {
-            F_Tier.push({
-                title: show.title,
-                image: show.image,
-                url: show.url
-            });
         }
     });
     checkEmptyTier();
