@@ -53,3 +53,9 @@ button:hover {
     color: #C7BACA;
     cursor: pointer;
 }
+
+@media only screen and (max-width: 800px) {
+    button {
+        margin: 10px 0px;
+    }
+}
