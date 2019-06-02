@@ -1,7 +1,9 @@
 const express = require('express');
 const path = require('path');
 const hbs = require('hbs');
-const tierList = require('./tierList');
+const mal = require('./mal');
+const anilist = require('./anilist');
+const helpers = require('./helpers')
 
 const app = express();
 
@@ -14,9 +16,22 @@ app.get('', async (req, res) => {
     if (!req.query.user) {
         return res.render('index');
     }
-    const { user } = req.query;   
-    const tiers = await tierList.fetchTierLists(req.query.user);
-    const animes = tierList.tallyAnimeScores(tiers);
+    const { user, service } = req.query;   
+
+    let listEntries
+
+    switch (service) {
+    	case 'anilist':
+    	 	listEntries = await anilist.fetchTierLists(req.query.user);
+    	break
+    	case 'mal':
+    	default:
+    	    listEntries = await mal.fetchTierLists(req.query.user);
+    	break
+    }
+
+   	const animes = helpers.tallyAnimeScores(listEntries);
+
     res.render('tierList', { animes, user });
 });
 
