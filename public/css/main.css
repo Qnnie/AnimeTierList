@@ -43,7 +43,6 @@ button {
     font-size: 24px;
     color: white;
     padding: 7px 14px;
-    border-radius: 10px;
     outline: none;
     border: 2px solid #C7BACA;    
     transition: all .4s;
