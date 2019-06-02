@@ -19,17 +19,31 @@
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png">
     <link rel="stylesheet" href='/css/main.css'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></head>
+    <link rel="stylesheet" href='/css/index.css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+</head>
 <body>
-    <div id="container">
-        <img src='../images/mascot.jpg'>
-        <h1>Anime Tierlist Generator</h1>
-        <input id='username' type="text" name="username" value="" placeholder="Anime List Username" autofocus="autofocus">
-        <button id='searchMAL'>Search MAL</button>
-        <button id='searchAnilist'>Search AniList</button>
-        <br>
-        <a href='https://github.com/Qnnie/AnimeTierList'><i class="fa fa-github" style="font-size:48px;color:#C7BACA"></i></a>
-        <script src='/js/listRedirect.js'></script>
+    {{> github-corner}}
+    <div class="home-wrapper">
+        <div id="container">
+            <div class="home-left">
+                <div class="user-info">
+                    <h1 class="title">Anime Tierlist Generator</h1>
+                    <div class="search">
+                        <input id='username' type="text" name="username" value="" placeholder="Anime List Username" autofocus="autofocus">
+                        <i class="material-icons">search</i>
+                    </div>
+                    <button id='searchMAL'>Search MAL</button>
+                    <button id='searchAnilist'>Search AniList</button>
+                </div>
+            </div>
+            <div class="home-right">
+                <img src='../images/mascot.jpg'>
+            </div>
+            <script src='/js/listRedirect.js'></script>
+        </div>
     </div>
 </body>
 </html>

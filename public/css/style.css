@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Merriweather|Nunito&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Nunito&display=swap');
 
 :root {
     --Banner: #9e7381;
@@ -13,9 +13,13 @@
     --imgW: 100px;
 }
 
+h1, h2, h3, h4, h5, h6, p, span {
+    font-family: 'Nunito', Roboto, sans-serif;
+}
+
+
 * {
     margin: 0;
-    font-family: 'Nunito', sans-serif;
 }
 
 header {
