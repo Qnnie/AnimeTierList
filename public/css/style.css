@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Merriweather|Nunito&display=swap');
 
 :root {
-    --SS: #c28ae2;
+    --SS: rgb(132, 176, 207);
     --S: #6E44FF;
     --A: #B892FF;
     --B: #FFC2E2;
