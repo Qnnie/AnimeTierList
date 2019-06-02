@@ -13,7 +13,6 @@ How to run locally
   <li>open up command line too</li>
   <li>git clone https://github.com/Qnnie/AnimeTierList</li>
   <li>cd AnimeTierList</li>
-  <li>open command line tool</li>
   <li>npm install {make sure you're in the directory}</li>
   <li>node app</li>
 </ol>
