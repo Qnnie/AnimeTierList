@@ -3,7 +3,7 @@ const scraper = require('mal-scraper');
 
 const DEFAULT_MAL_PARAMS = {
     after: 0,
-    type: "anime"
+    type: "anime",
 };
 
 /**
