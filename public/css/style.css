@@ -99,3 +99,24 @@ header h2 {
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
+
+@media only screen and (max-width: 800px) {
+    .tier {
+        display: block;
+    }
+    header h2 {
+        font-size: 2rem;
+    }
+    .rank {
+        font-size: 3.5rem;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+    #header-img {
+        position: absolute;
+        visibility: hidden;
+    }
+}
