@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Merriweather|Nunito&display=swap');
 
 :root {
+    --Banner: #9e7381;
     --SS: rgb(146, 184, 199);
     --S: #6E44FF;
     --A: #B892FF;
@@ -18,21 +19,20 @@
 }
 
 header {
-    background: #93C0E4;
-    position: relative;
-    text-align: center;
+    background: var(--Banner);
+    display: flex;
+    max-height: 130px;
+    justify-content: center;
 }
 
 #header-img {
-    position: absolute;
-    left: 10px;
     width: 80px;
     height: auto;
 }
 
 body {
     color: white;
-    text-shadow: 3px 3px #383838;
+    text-shadow: 2px 2px #383838;
 }
 
 header h2 {
