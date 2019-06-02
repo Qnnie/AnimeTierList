@@ -10,6 +10,7 @@ request <3
 How to run locally
 ------------------------------
 <ol>
+  <li>open up command line too</li>
   <li>git clone https://github.com/Qnnie/AnimeTierList</li>
   <li>cd AnimeTierList</li>
   <li>open command line tool</li>
