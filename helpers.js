@@ -3,14 +3,14 @@
  * that Anilist has corresponds to.
  */
 const tiers = {
-    10: "S",
-    9: "A",
-    8: "B",
+    10: "SS",
+    9: "S",
+    8: "A",
     7: "B",
     6: "C",
-    5: "C",
-    4: "D",
-    3: "D",
+    5: "D",
+    4: "F",
+    3: "F",
     2: "F",
     1: "F",
     0: "unranked",
