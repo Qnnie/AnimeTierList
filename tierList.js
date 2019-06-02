@@ -12,7 +12,7 @@ const DEFAULT_MAL_PARAMS = {
 const tiers = {
     10: "S",
     9: "A",
-    8: "B",
+    8: "A",
     7: "B",
     6: "C",
     5: "C",
