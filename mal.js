@@ -31,7 +31,7 @@ const fetchTierLists = async (user, { after , type } = DEFAULT_MAL_PARAMS) => {
     const iteration1 = await scraper.getWatchListFromUser(user, after, type);
     const iteration2 = await scraper.getWatchListFromUser(user, 300, type);
     const iteration3 = await scraper.getWatchListFromUser(user, 600, type);
-    let tiers = iteration1.concat(iteration2).concat(iteration3); 
+    const tiers = iteration1.concat(iteration2).concat(iteration3); 
 
     return tiers.map(transformAnime);
 }
