@@ -119,4 +119,8 @@ header h2 {
         position: absolute;
         visibility: hidden;
     }
+    .thumbnail-container {
+        width: 32%;
+        height: 30%;
+    }
 }

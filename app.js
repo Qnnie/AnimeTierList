@@ -20,6 +20,6 @@ app.get('', async (req, res) => {
     res.render('tierList', { animes, user });
 });
 
-app.listen(process.env.PORT || 3000, () => {
-        console.log('Server is up on port 3000');
+app.listen(process.env.PORT || 5000, () => {
+        console.log('Server is up on port 5000');
 });
