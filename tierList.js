@@ -46,6 +46,7 @@ const transformAnime = (anime) => ({
  */
 const fetchTierLists = async (user, { after , type } = DEFAULT_MAL_PARAMS) => {
     const tiers = await scraper.getWatchListFromUser(user, after, type);
+    // console.log(tiers.map(transformAnime));
     return tiers.map(transformAnime);
 }
 
@@ -62,11 +63,11 @@ const tallyAnimeScores = (animes) => {
     return animes.reduce((state, anime) => {
         const { tier } = anime;
         // the current animes that are in the object being built
-        const currentTier = state[tier]
+        const currentTier = state[tier];
         // the updated array, empty if we never added an anime of this tier before
         const newAnimeState = currentTier || [];
 
-        if (currentTier) {
+        if (currentTier || []) {
             newAnimeState.push(anime)
         }
         return {
@@ -78,7 +79,6 @@ const tallyAnimeScores = (animes) => {
         }
     }, {} /* initial state */);
 }
-
 
 module.exports = {
     fetchTierLists,
