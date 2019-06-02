@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Merriweather|Nunito&display=swap');
 
 :root {
+    --SS: #c28ae2;
     --S: #6E44FF;
     --A: #B892FF;
     --B: #FFC2E2;
@@ -65,6 +66,10 @@ header h2 {
 
 .anime {
     min-height: var(--imgH);
+}
+
+#SS-Rank {
+    background: var(--SS);
 }
 
 #S-Rank {
