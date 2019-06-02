@@ -51,4 +51,5 @@ button {
 button:hover {
     background: transparent;
     color: #C7BACA;
+    cursor: pointer;
 }
