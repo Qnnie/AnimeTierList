@@ -13,5 +13,3 @@ document.getElementById('searchMAL').addEventListener('click', () => {
 document.getElementById('searchAnilist').addEventListener('click', () => {
     window.location.href = `/?user=${document.getElementById('username').value}&service=anilist`
 });
-
-document.getElementByClassName('anime')
