@@ -3,7 +3,10 @@ const path = require('path');
 const hbs = require('hbs');
 const mal = require('./mal');
 const anilist = require('./anilist');
-const helpers = require('./helpers')
+const helpers = require('./helpers');
+const fs = require('fs');
+
+hbs.registerPartial('github-corner', fs.readFileSync('./views/partials/githubCorner.hbs', 'utf8'));
 
 const app = express();
 
