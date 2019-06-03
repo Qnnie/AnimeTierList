@@ -23,10 +23,12 @@ h1, h2, h3, h4, h5, h6, p, span {
 }
 
 header {
+    position: relative;
     background: var(--Banner);
     display: flex;
     max-height: 130px;
     justify-content: center;
+    align-items: center;
 }
 
 #header-img {
