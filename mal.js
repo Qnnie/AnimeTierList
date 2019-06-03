@@ -45,7 +45,7 @@ const fetchWatchList = ({ user, type, totalAnimes }) => {
  * @returns {Promise<number>}
  */
 const fetchUserListSize = username => {
-    return text(`https://myanimelist.net/pr2ofile/${username}`).then(html => {
+    return text(`https://myanimelist.net/profile/${username}`).then(html => {
         const $ = cheerio.load(html);
         const listSizeElement = $(".stats-data.fl-r .di-ib.fl-r").first();
         const listSize = listSizeElement.text().replace(/,/g, "");
