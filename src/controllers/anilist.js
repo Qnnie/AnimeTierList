@@ -1,6 +1,9 @@
+const express = require('express');
 const helpers = require('./helpers')
-const anilist = require('anilist-node');
-const Anilist = new anilist();
+const Anilist = require('anilist-node');
+const anilist = new Anilist();
+
+const router = express.Router();
 
 /**
  * Attaches metadata to a single anime
@@ -12,6 +15,7 @@ const transformAnime = (anime) => ({
     score: anime.score,
     title: anime.media.title.english,
     image: anime.media.coverImage.medium,
+    image_large: anime.media.coverImage.large,
     url: `https://anilist.co/anime/${anime.id}`,
     tier: helpers.tiers[anime.score]
 })
@@ -24,11 +28,15 @@ const transformAnime = (anime) => ({
  */
 const fetchTierLists = async (user) => {
     //Fetching Data from AniList
-    const lists = await Anilist.lists.anime(user); 
+    const lists = await anilist.lists.anime(user); 
     //Grabs only the Completed Anime. Formatted as an object like MAL
     const completedList = lists.find((list) => list.status === 'COMPLETED' && !list.isCustomList).entries;
     return completedList.map(transformAnime);
 }
+
+router.get("mal/:user", (req, res) => {
+
+})
 
 module.exports = {
     fetchTierLists

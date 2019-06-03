@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Merriweather|Nunito&display=swap');
 
 :root {
-    --button: #DE4F62;
-    --tinted-button: #A53244;
+    --button: #69c26d;
+    --tinted-button: #47904b;
     --shadow: 0 1px 3px rgba(0,0,0, 0.12), 0 1px 2px rgba(0,0,0, 0.24);
     --font-family: 'Nunito', Roboto, sans-serif;
 }
@@ -16,7 +16,7 @@ h1 {
     font-family: var(--font-family);
 }
 
-img {
+img { 
     width: 150px;
     height: auto;
 }
@@ -86,7 +86,7 @@ img {
 }
 
 #container {
-    padding: 10px;
+    padding: 15px;
     display: grid;
     grid-gap: 15px;
     grid-template-areas: "user-info image";
