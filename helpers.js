@@ -19,7 +19,7 @@ const tiers = {
 /**
  * Tallying animes with attached tier list 
  * metadata under a single object containing tiers
- * @param {Anime[]} animes 
+ * @param {AnimeList[]} animes 
  */
 const tallyAnimeScores = (animes) => {
     // When we tally these scores, the animes that don't have

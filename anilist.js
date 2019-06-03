@@ -5,7 +5,7 @@ const Anilist = new anilist();
 /**
  * Attaches metadata to a single anime
  * fetched from Anilist
- * @param {MalAnimeResponse} anime 
+ * @param {AniListAnimeResponse} anime 
  * @returns {Anime}
  */
 const transformAnime = (anime) => ({
@@ -17,17 +17,17 @@ const transformAnime = (anime) => ({
 })
 
 /**
- * Fetches a user's tier list from MAL with
+ * Fetches a user's tier list from AniList with
  * added metadata
  * @param {String} user
  * @param {TierListOptions} options
  */
 const fetchTierLists = async (user) => {
-    const lists = await Anilist.lists.anime(user)
-
-    const completedList = lists.find((list) => list.status === 'COMPLETED' && !list.isCustomList).entries
-
-    return completedList.map(transformAnime) 
+    //Fetching Data from AniList
+    const lists = await Anilist.lists.anime(user); 
+    //Grabs only the Completed Anime. Formatted as an object like MAL
+    const completedList = lists.find((list) => list.status === 'COMPLETED' && !list.isCustomList).entries;
+    return completedList.map(transformAnime);
 }
 
 module.exports = {
