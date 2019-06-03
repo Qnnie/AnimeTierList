@@ -1,21 +1,23 @@
 {
-  "name": "MALScraping",
+  "name": "anime-tierlist-generator",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Generate anime tierlists from your MAL and Anilist profiles",
+  "main": "src/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Qnnie",
   "license": "ISC",
   "dependencies": {
     "anilist-node": "^1.1.0",
     "cheerio": "^1.0.0-rc.3",
     "express": "^4.17.1",
     "hbs": "^4.0.4",
-    "mal-scraper": "^2.6.2",
     "node-fetch": "^2.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
   }
 }
