@@ -61,7 +61,7 @@ header h2 {
 .tier {
     display: grid;
     grid-template-columns: 10% 90%;
-    grid-column-gap: 1em; 
+    grid-column-gap: .25em; 
 }
 
 .tier-rank {
@@ -134,3 +134,10 @@ header h2 {
         height: 200px;
     }
 }
+
+@media only screen and (max-width: 1300px) {
+    .rank {
+        font-size: 4.45rem;
+    }
+}
+
