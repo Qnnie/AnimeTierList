@@ -14,6 +14,6 @@ How to run locally
   <li>git clone https://github.com/Qnnie/AnimeTierList</li>
   <li>cd AnimeTierList</li>
   <li>npm install</li>
-  <li>node app.js</li>
+  <li>node src/app.js</li>
 </ol>
 
