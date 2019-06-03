@@ -72,7 +72,7 @@ const transformAnime = anime => ({
     title: anime.animeTitle,
     image: anime.animeImagePath.replace("/r/96x136", ""),
     url: `https://myanimelist.net${anime.animeUrl}`,
-    tier: helpers.tiers[anime.score]
+    tier: helpers.getAnimeTier(anime.score)
 });
 
 /**
