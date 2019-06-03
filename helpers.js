@@ -27,7 +27,7 @@ const tallyAnimeScores = (animes) => {
     // will never be attempted to get converted to an array of animes
     // (because they don't exist)
     return animes.reduce((state, anime) => {
-        const { tier } = anime;
+        const { tier } = anime; //Grabs anime.tier 
         // the current animes that are in the object being built
         const currentTier = state[tier];
         // the updated array, empty if we never added an anime of this tier before
