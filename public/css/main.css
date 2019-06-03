@@ -11,6 +11,25 @@
     margin: 0;
 }
 
+#loader-wrapper{
+    display: block;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    background: white;
+}
+
+#loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
 h1 {
     color: #3d3d3d;
     font-family: var(--font-family);
