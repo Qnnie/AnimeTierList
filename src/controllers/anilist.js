@@ -61,7 +61,6 @@ router.get("/anilist/:user", async (req, res) => {
         const {user} = req.params;
         const listEntries = await fetchTierLists(user);
         const animes = helpers.tallyAnimeScores(listEntries);
-
         return res.render("tierList", { animes, user });
     } catch (err) {
         return res.render('404', {error: 'This anilist account does not exist'});
