@@ -39,6 +39,7 @@ const fetchWatchList = ({ user, type, totalAnimes }) => {
 };
 
 /**
+<<<<<<< HEAD
  * ONLY FOR MAL
  * Webscrapes for the number of list entries
  * @param {string} user
@@ -54,6 +55,8 @@ const fetchUserListSize = username => {
 };
 
 /**
+=======
+>>>>>>> 3212649a1f83dbde8643c5809faf3f0a217d0bec
  * Attaches metadata to a single anime
  * fetched from MAL
  * @param {MalAnimeResponse} anime
@@ -73,6 +76,7 @@ const transformAnime = anime => ({
  * @param {String} user
  * @param {MalListOptions} options
  */
+<<<<<<< HEAD
 const fetchTierLists = async (user, { after, type } = DEFAULT_MAL_PARAMS) => {
   const totalAnimes = await fetchUserListSize(user);
   const animes = await fetchWatchList({ user, type, totalAnimes });
@@ -84,3 +88,20 @@ module.exports = {
   fetchTierLists,
   fetchUserListSize
 };
+=======
+const fetchTierLists = async (user, { after , type } = DEFAULT_MAL_PARAMS) => {
+    //The reason we change after twice is to get list sizes greater than 300.
+    //In this case we are getting up to 900 Entries 
+    const iteration1 = await scraper.getWatchListFromUser(user, after, type);
+    const iteration2 = await scraper.getWatchListFromUser(user, 300, type);
+    const iteration3 = await scraper.getWatchListFromUser(user, 600, type);
+    //Throws all anime objects into the same array.
+    const tiers = iteration1.concat(iteration2).concat(iteration3);
+    //Creates a new array with only the data that transformAnime returns
+    return tiers.map(transformAnime);
+}
+
+module.exports = {
+    fetchTierLists
+}
+>>>>>>> 3212649a1f83dbde8643c5809faf3f0a217d0bec
