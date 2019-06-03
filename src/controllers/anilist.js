@@ -56,10 +56,8 @@ const fetchTierLists = async user => {
 };
 
 router.get("/anilist/:user", async (req, res) => {
-    let user;
     try {
-        const res = req.params;
-        user = res.user;
+        const {user} = req.params;
         const listEntries = await fetchTierLists(user);
         const animes = helpers.tallyAnimeScores(listEntries);
         return res.render("tierList", { animes, user });
