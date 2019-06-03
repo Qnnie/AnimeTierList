@@ -6,6 +6,12 @@ About
 Just a fun little project that converts your MAL list to a tier list. Feel free to improve any aspect and send in a pull
 request <3
 
+Tips
+------------------------------
+<ul>
+    <li>You can actually take a screenshot of your list by using browser extensions.</li>
+</ul>
+
 
 How to run locally
 ------------------------------
