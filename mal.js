@@ -1,10 +1,32 @@
 const helpers = require('./helpers')
+const cheerio = require('cheerio');
 const scraper = require('mal-scraper');
+const request = require('request');
 
 const DEFAULT_MAL_PARAMS = {
     after: 0,
     type: "anime",
 };
+
+/**
+ * ONLY FOR MAL
+ * Webscrapes for the number of list entries
+ * @param {String} user
+ * @returns {listSize} 
+ */
+const fetchUserListSize = (username) => {
+    request({url: `https://myanimelist.net/profile/${username}`}, (err, res, html) => {
+        if (!err && res.statusCode == 200) {
+            const $ = cheerio.load(html);
+            const listSize = $(".stats-data.fl-r .di-ib.fl-r");
+            console.log(listSize.text())
+            return parseInt(listSize.text());
+        } 
+        else {
+            console.log('Could not fetch list size');
+        }
+    });
+}
 
 /**
  * Attaches metadata to a single anime
@@ -27,6 +49,7 @@ const transformAnime = (anime) => ({
  * @param {MalListOptions} options
  */
 const fetchTierLists = async (user, { after , type } = DEFAULT_MAL_PARAMS) => {
+    fetchUserListSize(user);
     //The reason we change after twice is to get list sizes greater than 300.
     //In this case we are getting up to 900 Entries 
     const iteration1 = await scraper.getWatchListFromUser(user, after, type);
@@ -39,5 +62,6 @@ const fetchTierLists = async (user, { after , type } = DEFAULT_MAL_PARAMS) => {
 }
 
 module.exports = {
-    fetchTierLists
+    fetchTierLists,
+    fetchUserListSize
 }
