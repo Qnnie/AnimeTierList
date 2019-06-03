@@ -1,8 +1,11 @@
-const helpers = require("./helpers");
+const helpers = require("../helpers");
 const cheerio = require("cheerio");
 const scraper = require("mal-scraper");
 const fetch = require("node-fetch");
-const { text, flatten } = require("./utils");
+const { text, flatten } = require("../utils");
+const { Router } = require('express');
+
+const router = new Router();
 
 const ANIME_COUNT_PER_REQUEST = 300;
 const MAX_ANIMES = 900;
@@ -45,7 +48,7 @@ const fetchWatchList = ({ user, type, totalAnimes }) => {
  * @returns {Promise<number>}
  */
 const fetchUserListSize = username => {
-    return text(`https://myanimelist.net/pr2ofile/${username}`).then(html => {
+    return text(`https://myanimelist.net/profile/${username}`).then(html => {
         const $ = cheerio.load(html);
         const listSizeElement = $(".stats-data.fl-r .di-ib.fl-r").first();
         const listSize = listSizeElement.text().replace(/,/g, "");
@@ -80,7 +83,11 @@ const fetchTierLists = async (user, { after, type } = DEFAULT_MAL_PARAMS) => {
     return animes.map(transformAnime);
 };
 
-module.exports = {
-    fetchTierLists,
-    fetchUserListSize
-};
+router.get("/mal/:user", async (req, res) => {
+    const { user } = req.params;
+    const listEntries = await fetchTierLists(user);
+   	const animes = helpers.tallyAnimeScores(listEntries);
+    return res.render('tierList', { animes, user });
+});
+
+module.exports = router;

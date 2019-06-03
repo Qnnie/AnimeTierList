@@ -1,5 +1,5 @@
 {
   "watch": ["*/**"],
   "ignore": ["node_modules/"],
-  "exec": "node app.js"
+  "exec": "node src/app.js"
 }

@@ -12,10 +12,10 @@ const Loader = () => {
 
 document.getElementById('searchMAL').addEventListener('click', () => {
     Loader();
-    window.location.href = `/?user=${document.getElementById('username').value}&service=mal`
+    window.location.href = `/mal/${document.getElementById('username')}`
 });
 
 document.getElementById('searchAnilist').addEventListener('click', () => {
     Loader();
-    window.location.href = `/?user=${document.getElementById('username').value}&service=anilist`
+    window.location.href = `/anilist/${document.getElementById('username').value}`
 });

@@ -1,5 +1,5 @@
 const express = require('express');
-const helpers = require('./helpers')
+const helpers = require('../helpers')
 const Anilist = require('anilist-node');
 const anilist = new Anilist();
 
@@ -34,10 +34,11 @@ const fetchTierLists = async (user) => {
     return completedList.map(transformAnime);
 }
 
-router.get("mal/:user", (req, res) => {
-
+router.get("/anilist/:user", async (req, res) => {
+    const { user } = req.params;
+    const listEntries = await fetchTierLists(user);
+   	const animes = helpers.tallyAnimeScores(listEntries);
+    return res.render('tierList', { animes, user });
 })
 
-module.exports = {
-    fetchTierLists
-}
+module.exports = router;
