@@ -46,8 +46,9 @@ const transformAnime = anime => ({
  */
 const fetchTierLists = async user => {
     const { data, errors } = await anilist(query, { user });
+    
     if (errors && errors.length) {
-        throw Error(errors[0].message);
+        return undefined;
     }
 
     // query is specifically set up to only return one list
@@ -60,9 +61,10 @@ router.get("/anilist/:user", async (req, res) => {
         const {user} = req.params;
         const listEntries = await fetchTierLists(user);
         const animes = helpers.tallyAnimeScores(listEntries);
+        if (listEntries === undefined || listEntries.length == 0) {
+        }
         return res.render("tierList", { animes, user });
     } catch (err) {
-        console.log(err, user);
         return res.render('404', {error: 'This anilist account does not exist'});
     }
 });
