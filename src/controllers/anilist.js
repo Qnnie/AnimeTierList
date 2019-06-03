@@ -45,7 +45,10 @@ const transformAnime = anime => ({
  * @param {TierListOptions} options
  */
 const fetchTierLists = async user => {
-    const { data } = await anilist(query, { user });
+    const { data, errors } = await anilist(query, { user });
+    if (errors && errors.length) {
+        throw Error(errors[0].message);
+    }
 
     // query is specifically set up to only return one list
     const completedList = data.collection.lists[0].entries;
@@ -53,10 +56,17 @@ const fetchTierLists = async user => {
 };
 
 router.get("/anilist/:user", async (req, res) => {
-    const { user } = req.params;
-    const listEntries = await fetchTierLists(user);
-    const animes = helpers.tallyAnimeScores(listEntries);
-    return res.render("tierList", { animes, user });
+    let user;
+    try {
+        const res = req.params;
+        user = res.user;
+        const listEntries = await fetchTierLists(user);
+        const animes = helpers.tallyAnimeScores(listEntries);
+        return res.render("tierList", { animes, user });
+    } catch (err) {
+        console.log(err, user);
+        return res.render('oops');
+    }
 });
 
 module.exports = router;
