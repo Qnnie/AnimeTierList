@@ -35,7 +35,7 @@ const transformAnime = anime => ({
     image: anime.media.coverImage.medium,
     image_large: anime.media.coverImage.large,
     url: `https://anilist.co/anime/${anime.id}`,
-    tier: helpers.tiers[anime.score]
+    tier: helpers.getAnimeTier(anime.score)
 });
 
 /**

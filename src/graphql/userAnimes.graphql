@@ -4,7 +4,7 @@ query($user: String) {
       name
       entries {
         id
-        score
+        score(format: POINT_10_DECIMAL)
         media {
           coverImage {
             medium
