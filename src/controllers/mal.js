@@ -15,6 +15,8 @@ const DEFAULT_MAL_PARAMS = {
     type: "anime"
 };
 
+const getList = (user) => json()
+
 /**
  * Calculates the amount of requests required to
  * fetch a user's entire collection
@@ -23,22 +25,28 @@ const DEFAULT_MAL_PARAMS = {
 const requiredRequestCount = totalAnimes =>
     Math.ceil(totalAnimes / ANIME_COUNT_PER_REQUEST);
 
-const fetchWatchList = async ({ user, type, offset, totalAnimes }) => {
-    if (offset >= totalAnimes) {
-        return [];
-    }
-    // generate `maxRequestCount` amount of requests
-    // where the offset increases in `ANIME_COUNT_PER_REQUEST`
-    const result = await scraper.getWatchListFromUser(
-        user,
-        offset,
-        type
-    );
+const fetchWatchList = ({ user, type, totalAnimes }) => {
+    const recurse = async (offset) => {
+        if (offset >= totalAnimes) {
+            return [];
+        }
+        // generate `maxRequestCount` amount of requests
+        // where the offset increases in `ANIME_COUNT_PER_REQUEST`
+        const result = await scraper.getWatchListFromUser(user, offset, type);
 
-    const nextCursorAt = offset + result.length;
+        if (result.length < ANIME_COUNT_PER_REQUEST) {
+            return [];
+        }
 
-    // flatten the array of arrays into a single array
-    return [...result, await fetchWatchList({ user, type, offset: nextCursorAt, totalAnimes })]
+        const nextCursorAt = offset + result.length;
+
+        // flatten the array of arrays into a single array
+        return [
+            ...result,
+            ...await recurse(nextCursorAt)
+        ];
+    };
+    return recurse(0).then(flatten);
 };
 
 /**
@@ -50,9 +58,8 @@ const fetchWatchList = async ({ user, type, offset, totalAnimes }) => {
 const fetchUserListSize = username => {
     return text(`https://myanimelist.net/profile/${username}`).then(html => {
         const $ = cheerio.load(html);
-        const listSizeElement = $("a.anime.completed + span").first();
-        const listSize = listSizeElement.text().replace(/,/g, "");
-        return Number(listSize);
+        const elements = Array.from($(".anime .stats-status .di-ib.fl-r.lh10"));
+        return elements.reduce((all, elem) => all + Number(elem.children[0].data.replace(/,/g, "")), 0)
     });
 };
 
@@ -77,9 +84,8 @@ const transformAnime = anime => ({
  * @param {MalListOptions} options
  */
 const fetchTierLists = async (user, { after, type } = DEFAULT_MAL_PARAMS) => {
-    // const totalAnimes = fetchUserListSize(user);
-    // const animes = await fetchWatchList({ user, offset: 0, totalAnimes, type: "anime" })
-    const animes = await scraper.getWatchListFromUser(user, after, type);
+    const totalAnimes = await fetchUserListSize(user);
+    const animes = await fetchWatchList({ user, type: "anime", totalAnimes });
     //Creates a new array with only the data that transformAnime returns
     return animes.map(transformAnime);
 };
