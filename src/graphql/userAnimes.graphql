@@ -3,7 +3,7 @@ query($user: String) {
     lists {
       name
       entries {
-        id
+        mediaId
         score
         media {
           coverImage {
