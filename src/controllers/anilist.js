@@ -31,11 +31,11 @@ const anilist = (query, variables) => {
  */
 const transformAnime = anime => ({
     score: anime.score,
-    title: anime.media.title.userPreferred,
+    title: anime.media.title.english,
     image: anime.media.coverImage.medium,
     image_large: anime.media.coverImage.large,
-    url: `https://anilist.co/anime/${anime.mediaId}`,
-    tier: helpers.tiers[anime.score]
+    url: `https://anilist.co/anime/${anime.id}`,
+    tier: helpers.getAnimeTier(anime.score)
 });
 
 /**

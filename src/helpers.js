@@ -1,19 +1,44 @@
-/**
- * Definition of what the ranks
- * that Anilist has corresponds to.
- */
-const tiers = {
-    10: "SS",
-    9: "S",
-    8: "A",
-    7: "B",
-    6: "C",
-    5: "D",
-    4: "D",
-    3: "F",
-    2: "F",
-    1: "F",
-    0: "unranked",
+const tierBreakpoints = [
+    {
+        tier: 'SS',
+        breakpoint: 10
+    },
+    {
+        tier: 'S',
+        breakpoint: 9
+    },
+    {
+        tier: 'A',
+        breakpoint: 8
+    },
+    {
+        tier: 'B',
+        breakpoint: 7
+    },
+    {
+        tier: 'C',
+        breakpoint: 6
+    },
+    {
+        tier: 'D',
+        breakpoint: 4
+    },
+    {
+        tier: 'F',
+        breakpoint: 0
+    }
+]
+
+const getAnimeTier = (score) => {
+    if (score === 0) {
+        return 'unranked'
+    }
+
+    for (let i = 0; i < tierBreakpoints.length; i++) {
+        if (score >= tierBreakpoints[i].breakpoint) {
+            return tierBreakpoints[i].tier
+        } 
+    }
 }
 
 /**
@@ -47,6 +72,6 @@ const tallyAnimeScores = (animes) => {
 }
 
 module.exports = {
-    tiers,
+    getAnimeTier,
     tallyAnimeScores
 }

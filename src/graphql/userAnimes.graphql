@@ -3,8 +3,8 @@ query($user: String) {
     lists {
       name
       entries {
-        mediaId
-        score
+        id
+        score(format: POINT_10_DECIMAL)
         media {
           coverImage {
             medium
