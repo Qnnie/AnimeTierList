@@ -11,10 +11,10 @@
   "author": "Qnnie",
   "license": "ISC",
   "dependencies": {
-    "anilist-node": "^1.1.0",
     "cheerio": "^1.0.0-rc.3",
     "express": "^4.17.1",
     "hbs": "^4.0.4",
+    "mal-scraper": "^2.6.2",
     "node-fetch": "^2.6.0"
   },
   "devDependencies": {
