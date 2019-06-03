@@ -15,8 +15,6 @@ const DEFAULT_MAL_PARAMS = {
     type: "anime"
 };
 
-const getList = (user) => json()
-
 /**
  * Calculates the amount of requests required to
  * fetch a user's entire collection
