@@ -32,7 +32,7 @@ const fetchWatchList = ({ user, type, totalAnimes }) => {
         // where the offset increases in `ANIME_COUNT_PER_REQUEST`
         const result = await scraper.getWatchListFromUser(user, offset, type);
 
-        if (result.length < ANIME_COUNT_PER_REQUEST) {
+        if (result.length < 1) {
             return [];
         }
 
