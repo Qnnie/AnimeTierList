@@ -65,7 +65,7 @@ router.get("/anilist/:user", async (req, res) => {
         return res.render("tierList", { animes, user });
     } catch (err) {
         console.log(err, user);
-        return res.render('oops');
+        return res.render('404', {error: 'This anilist account does not exist'});
     }
 });
 
