@@ -147,6 +147,10 @@ button:hover {
     cursor: pointer;
 }
 
+.darken-button {
+    background: var(--tinted-button);
+}
+
 @media only screen and (max-width: 800px) {
     button {
         margin: 10px 0px;

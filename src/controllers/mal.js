@@ -110,4 +110,14 @@ router.get("/mal/:user", async (req, res) => {
     return res.render("tierList", { animes, user });
 });
 
+router.get("/mal/manga/:user", async (req, res) => {
+    const { user } = req.params;
+    const listEntries = await fetchTierLists(user,{type:'manga'});
+    const animes = helpers.tallyAnimeScores(listEntries);
+    if (listEntries === undefined || listEntries.length == 0) {
+        return res.render("404", { error: 'MAL Account does not exist, or is void of rankings' });
+    }
+    return res.render("tierList", { animes, user });
+});
+
 module.exports = router;
