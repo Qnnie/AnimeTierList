@@ -75,6 +75,14 @@ const transformAnime = anime => ({
     tier: helpers.getAnimeTier(anime.score)
 });
 
+const transformManga = manga => ({
+    score: manga.score,
+    title: manga.mangaTitle,
+    image: manga.mangaImagePath.replace("/r/96x136", ""),
+    url: `https://myanimelist.net${manga.mangaUrl}`,
+    tier: helpers.getAnimeTier(manga.score)
+});
+
 /**
  * Fetches a user's tier list from MAL with
  * added metadata
@@ -83,8 +91,12 @@ const transformAnime = anime => ({
  */
 const fetchTierLists = async (user, { after, type } = DEFAULT_MAL_PARAMS) => {
     const totalAnimes = await fetchUserListSize(user);
-    const animes = await fetchWatchList({ user, type: "anime", totalAnimes });
-    //Creates a new array with only the data that transformAnime returns
+    //ToDo -> Total Manga
+    const animes = await fetchWatchList({ user, type, totalAnimes });
+    //Creates a new array with only the data that transformAnime/Manga returns
+    if (type == 'manga') { 
+        return animes.map(transformManga); 
+    }
     return animes.map(transformAnime);
 };
 
