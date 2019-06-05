@@ -90,6 +90,10 @@ img {
     .title {
         font-size: 26pt;
     }
+    .content-type {
+        position: absolute;
+        bottom: 0;
+    }
 }
 
 .search {
