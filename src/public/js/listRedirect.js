@@ -38,22 +38,23 @@ document
         navigate(name => `/anilist/${name}`)
     });
 
-document
-    .getElementById('manga-search')
-    .addEventListener("click", () => {
-        defaultSearch = false;
+const toggleSearchState = () => {
         let anime = document.getElementById("anime-search");
         anime.classList.toggle("darken-button");
         let manga = document.getElementById("manga-search");
         manga.classList.toggle("darken-button");
+}
+
+document
+    .getElementById('manga-search')
+    .addEventListener("click", () => {
+        defaultSearch = false;
+        toggleSearchState();
     });
 
 document
     .getElementById('anime-search')
     .addEventListener("click", () => {
         defaultSearch = true;
-        let anime = document.getElementById("anime-search");
-        anime.classList.toggle("darken-button");
-        let manga = document.getElementById("manga-search");
-        manga.classList.toggle("darken-button");
+        toggleSearchState();
     });
