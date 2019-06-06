@@ -16,6 +16,7 @@ const DEFAULT_MAL_PARAMS = {
 };
 
 let userImage = '/images/mascot2.jpg';
+let userBackground = 'white';
 
 /**
  * Calculates the amount of requests required to
@@ -48,18 +49,25 @@ const fetchWatchList = ({ user, type, totalAnimes }) => {
     };
     return recurse(0).then(flatten);
 };
-
 /**
  * ONLY FOR MAL
  * Webscrapes for the number of list entries
  * @param {string} user
  * @returns {Promise<number>}
  */
-const fetchUserListSize = username => {
+const fetchMALProfile = username => {
     return text(`https://myanimelist.net/profile/${username}`).then(html => {
         const $ = cheerio.load(html);
         const elements = Array.from($(".anime .stats-status .di-ib.fl-r.lh10"));
         userImage = $(".user-image.mb8 img").attr('src');
+        const getBackgroundUrl = () => {
+            userBio = $(".word-break").text();
+            let start = userBio.indexOf("{{");
+            let end = userBio.indexOf("}}");
+            userBackground = userBio.slice((start+2), (end));
+            userBackground = `url('${userBackground}')`;
+        };
+        getBackgroundUrl();
         return elements.reduce((all, elem) => all + Number(elem.children[0].data.replace(/,/g, "")), 0)
     });
 };
@@ -93,7 +101,7 @@ const transformManga = manga => ({
  * @param {MalListOptions} options
  */
 const fetchTierLists = async (user, { after, type } = DEFAULT_MAL_PARAMS) => {
-    const totalAnimes = await fetchUserListSize(user);
+    const totalAnimes = await fetchMALProfile(user);
     //ToDo -> Total Manga
     const animes = await fetchWatchList({ user, type, totalAnimes });
     //Creates a new array with only the data that transformAnime/Manga returns
@@ -110,7 +118,7 @@ router.get("/mal/:user", async (req, res) => {
     if (listEntries === undefined || listEntries.length == 0) {
         return res.render("404", { error: 'MAL Account does not exist, or is void of rankings' });
     }
-    return res.render("tierList", { animes, user, userImage });
+    return res.render("tierList", { animes, user, userImage, userBackground });
 });
 
 router.get("/mal/manga/:user", async (req, res) => {
@@ -120,7 +128,7 @@ router.get("/mal/manga/:user", async (req, res) => {
     if (listEntries === undefined || listEntries.length == 0) {
         return res.render("404", { error: 'MAL Account does not exist, or is void of rankings' });
     }
-    return res.render("tierList", { animes, user, userImage });
+    return res.render("tierList", { animes, user, userImage, userBackground });
 });
 
 module.exports = router;

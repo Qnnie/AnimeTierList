@@ -32,13 +32,12 @@
     <title>Anime Tier List</title>
 </head>
 <body>
-    <div id="background"></div>
+    <div id="background" style="background:{{userBackground}};background-size:cover;background-repeat:no-repeat;" ></div>
     <header>
         <img id='header-img' src='{{userImage}}'>
         {{!-- <img id='header-img' src='/images/mascot2.jpg'> --}}
         <h2>{{user}}'s Tier List</h2>
     </header>
-    <hr>
     <div id="container">
         {{> tier-block tier='SS' animes=this.animes.SS}}
         {{> tier-block tier='S' animes=this.animes.S}}
