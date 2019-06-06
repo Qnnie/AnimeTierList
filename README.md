@@ -31,6 +31,7 @@ Tips
 ------------------------------
 <ul>
     <li>You can actually take a screenshot of your list by using browser extensions.</li>
+    <li>If you're only getting a section like "Plan to watch" You need to go to your list settings and remove that as your default</li>
 </ul>
 
 How to run locally
