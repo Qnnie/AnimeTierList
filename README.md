@@ -1,6 +1,10 @@
 <img src='src/public/images/HomePreview.png'>
 <img src='src/public/images/ListPreview.png'>
 
+NOTE
+------------------------------
+Manga only works for MAL atm
+
 About
 ------------------------------
 Just a fun little project that converts your MAL and or AniList to a tier list. Feel free to improve any aspect and send in a pull
