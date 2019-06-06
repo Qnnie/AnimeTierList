@@ -17,6 +17,7 @@ Heres my profile as an example https://myanimelist.net/profile/Qnnie <br>
 Background Image: {{image url}}
 <br>
 Your top bar can be different colors. 
+<br>
 Colors can be Hex ex: [[#ffffff]] 
 <br>
 RGB: [[rgb(255,0,0)]] 
