@@ -22,17 +22,18 @@ Background Image: {{image url}}
 Your top bar can be different colors. 
 <br>
 <br>
-Colors can be Hex ex: [[#ffffff]] 
+Colors can be <br>
+Hex ex: [[#ffffff]] 
 <br>
 RGB: [[rgb(255,0,0)]] 
 <br>
 or even slightly transparent with RGBA [[rgba(255,0,0,0.5)]] 
 <br>
 Normal ex: [[green]] 
-<br>
+<br><br>
 CUSTOM RANKS 
 ex: <<SS,S,A,B,C,D,F,F,F,F>> <br>
-<br>SS = 10
+SS = 10
 <br>S = 9
 <br>A = 8
 <br>B = 7
