@@ -17,6 +17,7 @@ const DEFAULT_MAL_PARAMS = {
 
 let userImage = '/images/mascot2.jpg';
 let userBackground = 'white';
+let userHeader = '#9e7381';
 
 /**
  * Calculates the amount of requests required to
@@ -60,14 +61,20 @@ const fetchMALProfile = username => {
         const $ = cheerio.load(html);
         const elements = Array.from($(".anime .stats-status .di-ib.fl-r.lh10"));
         userImage = $(".user-image.mb8 img").attr('src');
+        userBio = $(".word-break").text();
         const getBackgroundUrl = () => {
-            userBio = $(".word-break").text();
             let start = userBio.indexOf("{{");
             let end = userBio.indexOf("}}");
-            userBackground = userBio.slice((start+2), (end));
+            userBackground = userBio.slice((start+2), end);
             userBackground = `url('${userBackground}')`;
         };
+        const getHeaderColor = () => {
+            let start = userBio.indexOf("[[");
+            let end = userBio.indexOf("]]");
+            userHeader = userBio.slice((start+2), end);
+        }
         getBackgroundUrl();
+        getHeaderColor();
         return elements.reduce((all, elem) => all + Number(elem.children[0].data.replace(/,/g, "")), 0)
     });
 };
@@ -118,7 +125,7 @@ router.get("/mal/:user", async (req, res) => {
     if (listEntries === undefined || listEntries.length == 0) {
         return res.render("404", { error: 'MAL Account does not exist, or is void of rankings' });
     }
-    return res.render("tierList", { animes, user, userImage, userBackground });
+    return res.render("tierList", { animes, user, userImage, userBackground, userHeader });
 });
 
 router.get("/mal/manga/:user", async (req, res) => {
@@ -128,7 +135,7 @@ router.get("/mal/manga/:user", async (req, res) => {
     if (listEntries === undefined || listEntries.length == 0) {
         return res.render("404", { error: 'MAL Account does not exist, or is void of rankings' });
     }
-    return res.render("tierList", { animes, user, userImage, userBackground });
+    return res.render("tierList", { animes, user, userImage, userBackground, userHeader });
 });
 
 module.exports = router;
