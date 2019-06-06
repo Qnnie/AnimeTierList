@@ -64,20 +64,20 @@ const fetchMALProfile = username => {
         userImage = $(".user-image.mb8 img").attr('src');
         userBio = $(".word-break").text();
         const getBackgroundUrl = () => {
-            let start = userBio.indexOf("{{");
-            let end = userBio.indexOf("}}");
-            userBackground = userBio.slice((start+2), end);
+            let start = userBio.indexOf("{background}");
+            let end = userBio.indexOf("{/background}");
+            userBackground = userBio.slice((start+12), end);
             userBackground = `url('${userBackground}')`;
         };
         const getHeaderColor = () => {
-            let start = userBio.indexOf("[[");
-            let end = userBio.indexOf("]]");
-            userHeader = userBio.slice((start+2), end);
+            let start = userBio.indexOf("{topbar}");
+            let end = userBio.indexOf("{/topbar}");
+            userHeader = userBio.slice((start+8), end);
         }
         const getCustomRatings = () => {
-            let start = userBio.indexOf("<<");
-            let end = userBio.indexOf(">>");
-            ratings = userBio.slice((start+2), end);
+            let start = userBio.indexOf("{ratings}");
+            let end = userBio.indexOf("{/ratings}");
+            ratings = userBio.slice((start+9), end);
             ratings = ratings.toUpperCase();
             userCustomRatings = ratings.split( ',' ).map( String );
         } 
