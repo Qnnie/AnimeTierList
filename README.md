@@ -16,6 +16,8 @@ Put the following inside your bio. <br>
 Heres my profile as an example https://myanimelist.net/profile/Qnnie <br>
 Background Image: {{image url}}
 <br>
+Your top bar can be different colors. 
+<br>
 Colors can be Hex ex: [[#ffffff]] 
 <br>
 RGB: [[rgb(255,0,0)]] 
@@ -29,6 +31,7 @@ Tips
 ------------------------------
 <ul>
     <li>You can actually take a screenshot of your list by using browser extensions.</li>
+    <li>If you're only getting a section like "Plan to watch" You need to go to your list settings and remove that as your default</li>
 </ul>
 
 How to run locally
