@@ -1,4 +1,4 @@
-const tierBreakpoints = [
+let tierBreakpoints = [
     {
         tier: 'SS',
         breakpoint: 10
@@ -73,5 +73,6 @@ const tallyAnimeScores = (animes) => {
 
 module.exports = {
     getAnimeTier,
-    tallyAnimeScores
+    tallyAnimeScores,
+    tierBreakpoints
 }

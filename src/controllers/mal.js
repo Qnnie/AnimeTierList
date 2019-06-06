@@ -18,6 +18,7 @@ const DEFAULT_MAL_PARAMS = {
 let userImage = '/images/mascot2.jpg';
 let userBackground = 'white';
 let userHeader = '#9e7381';
+let userCustomRatings = [];
 
 /**
  * Calculates the amount of requests required to
@@ -73,8 +74,16 @@ const fetchMALProfile = username => {
             let end = userBio.indexOf("]]");
             userHeader = userBio.slice((start+2), end);
         }
+        const getCustomRatings = () => {
+            let start = userBio.indexOf("<<");
+            let end = userBio.indexOf(">>");
+            ratings = userBio.slice((start+2), end);
+            ratings = ratings.toUpperCase();
+            userCustomRatings = ratings.split( ',' ).map( String );
+        } 
         getBackgroundUrl();
         getHeaderColor();
+        getCustomRatings();
         return elements.reduce((all, elem) => all + Number(elem.children[0].data.replace(/,/g, "")), 0)
     });
 };
@@ -101,6 +110,43 @@ const transformManga = manga => ({
     tier: helpers.getAnimeTier(manga.score)
 });
 
+const customRatings = (anime) => {
+    for (let i=0; i<anime.length; i++) {
+        switch(anime[i].score) {
+            case 10: 
+                anime[i].tier = userCustomRatings[0];
+                break;
+            case 9: 
+                anime[i].tier = userCustomRatings[1];
+                break;   
+            case 8: 
+                anime[i].tier = userCustomRatings[2];
+                break;
+            case 7: 
+                anime[i].tier = userCustomRatings[3];
+                break;
+            case 6: 
+                anime[i].tier = userCustomRatings[4];
+                break;
+            case 5: 
+                anime[i].tier = userCustomRatings[5];
+                break;
+            case 4: 
+                anime[i].tier = userCustomRatings[6];
+                break;
+            case 3: 
+                anime[i].tier = userCustomRatings[7];
+                break; 
+            case 2: 
+                anime[i].tier = userCustomRatings[8];
+                break;
+            case 1: 
+                anime[i].tier = userCustomRatings[9];
+                break;
+        }
+    }
+    // console.log(anime);
+}
 /**
  * Fetches a user's tier list from MAL with
  * added metadata
@@ -121,6 +167,9 @@ const fetchTierLists = async (user, { after, type } = DEFAULT_MAL_PARAMS) => {
 router.get("/mal/:user", async (req, res) => {
     const { user } = req.params;
     const listEntries = await fetchTierLists(user);
+    if (userCustomRatings.length == 10) {
+        customRatings(listEntries);
+    }
     const animes = helpers.tallyAnimeScores(listEntries);
     if (listEntries === undefined || listEntries.length == 0) {
         return res.render("404", { error: 'MAL Account does not exist, or is void of rankings' });
@@ -131,6 +180,9 @@ router.get("/mal/:user", async (req, res) => {
 router.get("/mal/manga/:user", async (req, res) => {
     const { user } = req.params;
     const listEntries = await fetchTierLists(user,{type:'manga'});
+    if (userCustomRatings.length == 10) {
+        customRatings(listEntries);
+    }
     const animes = helpers.tallyAnimeScores(listEntries);
     if (listEntries === undefined || listEntries.length == 0) {
         return res.render("404", { error: 'MAL Account does not exist, or is void of rankings' });
