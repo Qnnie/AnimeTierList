@@ -3,7 +3,7 @@
 
 NOTE
 ------------------------------
-Manga only works for MAL atm
+Manga only works for MAL atm and lists cap at 900.
 
 About
 ------------------------------
@@ -45,6 +45,14 @@ Tips
 <ul>
     <li>You can actually take a screenshot of your list by using browser extensions.</li>
     <li>If you're only getting a section like "Plan to watch" You need to go to your list settings and remove that as your default</li>
+</ul>
+
+WIP 
+------------------------------
+<ul>
+    <li>Manga for AniList</li>
+    <li>Customization for AniList</li>
+    <li>Working on general bugs</li>
 </ul>
 
 How to run locally
