@@ -12,11 +12,15 @@ request <3
 
 Customize (For MAL Only)
 ------------------------------
-Put the following inside your bio. <br> 
-Heres my profile as an example https://myanimelist.net/profile/Qnnie <br>
+**Put the following inside your bio** <br><br>
+Heres my profile as an example https://myanimelist.net/profile/Qnnie 
+<br>
+<br>
 Background Image: {{image url}}
 <br>
+<br>
 Your top bar can be different colors. 
+<br>
 <br>
 Colors can be Hex ex: [[#ffffff]] 
 <br>
