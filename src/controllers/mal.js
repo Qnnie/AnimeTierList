@@ -15,6 +15,8 @@ const DEFAULT_MAL_PARAMS = {
     type: "anime"
 };
 
+let userImage = '/images/mascot2.jpg';
+
 /**
  * Calculates the amount of requests required to
  * fetch a user's entire collection
@@ -57,6 +59,7 @@ const fetchUserListSize = username => {
     return text(`https://myanimelist.net/profile/${username}`).then(html => {
         const $ = cheerio.load(html);
         const elements = Array.from($(".anime .stats-status .di-ib.fl-r.lh10"));
+        userImage = $(".user-image.mb8 img").attr('src');
         return elements.reduce((all, elem) => all + Number(elem.children[0].data.replace(/,/g, "")), 0)
     });
 };
@@ -72,7 +75,7 @@ const transformAnime = anime => ({
     title: anime.animeTitle,
     image: anime.animeImagePath.replace("/r/96x136", ""),
     url: `https://myanimelist.net${anime.animeUrl}`,
-    tier: helpers.getAnimeTier(anime.score)
+    tier: helpers.getAnimeTier(anime.score),
 });
 
 const transformManga = manga => ({
@@ -107,7 +110,7 @@ router.get("/mal/:user", async (req, res) => {
     if (listEntries === undefined || listEntries.length == 0) {
         return res.render("404", { error: 'MAL Account does not exist, or is void of rankings' });
     }
-    return res.render("tierList", { animes, user });
+    return res.render("tierList", { animes, user, userImage });
 });
 
 router.get("/mal/manga/:user", async (req, res) => {
@@ -117,7 +120,7 @@ router.get("/mal/manga/:user", async (req, res) => {
     if (listEntries === undefined || listEntries.length == 0) {
         return res.render("404", { error: 'MAL Account does not exist, or is void of rankings' });
     }
-    return res.render("tierList", { animes, user });
+    return res.render("tierList", { animes, user, userImage });
 });
 
 module.exports = router;
