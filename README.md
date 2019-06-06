@@ -16,23 +16,23 @@ Customize (For MAL Only)
 Heres my profile as an example https://myanimelist.net/profile/Qnnie 
 <br>
 <br>
-Background Image: {{image url}}
+Background Image: {background}image url{/background}
 <br>
 <br>
 Your top bar can be different colors. 
 <br>
 <br>
 Colors can be <br>
-Hex ex: [[#ffffff]] 
+Hex ex: {topbar}#ffffff{/topbar} 
 <br>
-RGB: [[rgb(255,0,0)]] 
+RGB: {topbar}rgb(255,0,0){/topbar}
 <br>
-or even slightly transparent with RGBA [[rgba(255,0,0,0.5)]] 
+or even slightly transparent with RGBA {topbar}rgba(255,0,0,0.5){/topbar} 
 <br>
-Normal ex: [[green]] 
+Normal ex: {topbar}green{/topbar} 
 <br><br>
 CUSTOM RANKS 
-ex: <<SS,S,A,B,C,D,F,F,F,F>> <br>
+ex: {ratings}SS,S,A,B,C,D,F,F,F,F{/ratings} <br>
 SS = 10
 <br>S = 9
 <br>A = 8
