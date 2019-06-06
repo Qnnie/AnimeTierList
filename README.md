@@ -27,14 +27,14 @@ or even slightly transparent with RGBA [[rgba(255,0,0,0.5)]]
 Normal ex: [[green]] 
 <br>
 CUSTOM RANKS 
-ex: <<SS,S,A,B,C,D,F,F,F,F>>
-*SS = 10
-*S = 9
-*A = 8
-*B = 7
-*C = 6
-*D = 5
-*F = 4-1
+ex: <<SS,S,A,B,C,D,F,F,F,F>> <br>
+<br>SS = 10
+<br>S = 9
+<br>A = 8
+<br>B = 7
+<br>C = 6
+<br>D = 5
+<br>F = 4-1
 
 Tips
 ------------------------------
