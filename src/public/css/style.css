@@ -23,6 +23,7 @@ h1, h2, h3, h4, h5, h6, p, span {
 }
 
 header {
+    background: var(--Banner);
     display: flex;
     max-height: 130px;
     justify-content: center;
