@@ -35,7 +35,12 @@ document
 document
     .getElementById("searchAnilist")
     .addEventListener("click", () => {
-        navigate(name => `/anilist/${name}`)
+        if (defaultSearch) {
+            navigate(name => `/anilist/${name}`)
+        }
+        else {
+            navigate(name => `/anilist/manga/${name}`)
+        }
     });
 
 const toggleSearchState = () => {

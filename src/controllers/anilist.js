@@ -4,10 +4,6 @@ const fs = require("fs");
 const path = require("path");
 const { json } = require("../utils");
 
-const query = fs
-    .readFileSync(path.join(__dirname, "..", "graphql", "userAnimes.graphql"))
-    .toString();
-
 const router = express.Router();
 
 const anilist = (query, variables) => {
@@ -44,7 +40,11 @@ const transformAnime = anime => ({
  * @param {String} user
  * @param {TierListOptions} options
  */
-const fetchTierLists = async user => {
+const fetchTierLists = async (user, mediaType) => {
+    const query = fs
+    .readFileSync(path.join(__dirname, "..", "graphql", mediaType))
+    .toString();
+
     const { data, errors } = await anilist(query, { user });
     
     if (errors && errors.length) {
@@ -59,11 +59,22 @@ const fetchTierLists = async user => {
 router.get("/anilist/:user", async (req, res) => {
     try {
         const {user} = req.params;
-        const listEntries = await fetchTierLists(user);
+        const listEntries = await fetchTierLists(user, "userAnimes.graphql");
         const animes = helpers.tallyAnimeScores(listEntries);
         return res.render("tierList", { animes, user });
     } catch (err) {
-        return res.render('404', {error: 'This anilist account does not exist'});
+        return res.render('404', {error: 'This anilist account does not exist or is void of rankings'});
+    }
+});
+
+router.get("/anilist/manga/:user", async (req, res) => {
+    try {
+        const {user} = req.params;
+        const listEntries = await fetchTierLists(user, "userManga.graphql");
+        const animes = helpers.tallyAnimeScores(listEntries);
+        return res.render("tierList", { animes, user });
+    } catch (err) {
+        return res.render('404', {error: 'This anilist account does not exist or is void of rankings'});
     }
 });
 

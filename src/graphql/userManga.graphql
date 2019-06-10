@@ -1,0 +1,20 @@
+query($user: String) {
+  collection: MediaListCollection(userName: $user, type:MANGA, status:COMPLETED) {
+    lists {
+      name
+      entries {
+        mediaId
+        score(format: POINT_10_DECIMAL)
+        media {
+          coverImage {
+            medium
+            large
+          }
+          title {
+            userPreferred
+          }
+        }
+      }
+    }
+  }
+}
