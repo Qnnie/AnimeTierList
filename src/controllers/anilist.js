@@ -25,12 +25,12 @@ const anilist = (query, variables) => {
  * @param {AniListAnimeResponse} anime
  * @returns {Anime}
  */
-const transformAnime = anime => ({
+const transformAnime = mediaType => anime => ({
     score: anime.score,
     title: anime.media.title.userPreferred,
     image: anime.media.coverImage.medium,
     image_large: anime.media.coverImage.large,
-    url: `https://anilist.co/anime/${anime.mediaId}`,
+    url: `https://anilist.co/${mediaType}/${anime.mediaId}`,
     tier: helpers.getAnimeTier(anime.score)
 });
 
@@ -47,7 +47,7 @@ const fetchTierLists = async (user, mediaType) => {
 
     const { data, errors } = await anilist(query, {
         user,
-        mediaType
+        mediaType: mediaType.toUpperCase()
     });
 
     if (errors && errors.length) {
@@ -56,13 +56,13 @@ const fetchTierLists = async (user, mediaType) => {
 
     // query is specifically set up to only return one list
     const completedList = data.collection.lists[0].entries;
-    return completedList.map(transformAnime);
+    return completedList.map(transformAnime(mediaType));
 };
 
 router.get("/anilist/:user", async (req, res) => {
     try {
         const { user } = req.params;
-        const listEntries = await fetchTierLists(user, "ANIME");
+        const listEntries = await fetchTierLists(user, "anime");
         const animes = helpers.tallyAnimeScores(listEntries);
         return res.render("tierList", { animes, user });
     } catch (err) {
@@ -75,7 +75,7 @@ router.get("/anilist/:user", async (req, res) => {
 router.get("/anilist/manga/:user", async (req, res) => {
     try {
         const { user } = req.params;
-        const listEntries = await fetchTierLists(user, "MANGA");
+        const listEntries = await fetchTierLists(user, "manga");
         const animes = helpers.tallyAnimeScores(listEntries);
         return res.render("tierList", { animes, user });
     } catch (err) {
