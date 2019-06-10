@@ -51,7 +51,6 @@ SS = 10
 ## WIP
 
 <ul>
-    <li>Manga for AniList</li>
     <li>Customization for AniList</li>
     <li>Working on general bugs</li>
 </ul>
