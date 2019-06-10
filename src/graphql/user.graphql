@@ -1,5 +1,5 @@
-query($user: String) {
-  collection: MediaListCollection(userName: $user, type:ANIME, status:COMPLETED) {
+query($user: String, $mediaType: MediaType) {
+  collection: MediaListCollection(userName: $user, type: $mediaType, status:COMPLETED) {
     lists {
       name
       entries {
