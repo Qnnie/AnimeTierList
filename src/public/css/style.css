@@ -15,11 +15,16 @@
 
 h1, h2, h3, h4, h5, h6, p, span {
     font-family: 'Nunito', Roboto, sans-serif;
+    text-shadow: 2px 2px #383838;
 }
-
 
 * {
     margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: white;
 }
 
 header {
@@ -48,7 +53,6 @@ header {
 
 body {
     color: white;
-    text-shadow: 2px 2px #383838;
 }
 
 header h2 {
@@ -67,6 +71,26 @@ header h2 {
     object-position: center;
     width: 100%;
     height: 100%;
+}
+
+.title-display {
+    font-family: 'Nunito', Roboto, sans-serif;
+    font-size: 0.8rem;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0);
+    color: transparent;
+}
+
+.title-display:hover {
+    background: rgba(0,0,0,0.45);
+    color: white;
 }
 
 .tier {
