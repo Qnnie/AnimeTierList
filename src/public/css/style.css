@@ -15,7 +15,6 @@
 
 h1, h2, h3, h4, h5, h6, p, span {
     font-family: 'Nunito', Roboto, sans-serif;
-    text-shadow: 2px 2px #383838;
 }
 
 * {
@@ -179,7 +178,7 @@ header h2 {
 
 @media only screen and (max-width: 1300px) {
     .rank {
-        font-size: 4.45rem;
+        font-size: 2rem;
     }
 }
 
