@@ -42,7 +42,12 @@ header {
     height: auto;
 }
 
- #background {
+.anime {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#background {
     z-index: -1;
     position: fixed;
     width: 100%;
@@ -64,6 +69,7 @@ header h2 {
     display: inline-block;
     width: var(--imgW);
     height: var(--imgH);
+    margin: 0px 1px;
 }
 
 .thumbnail {
@@ -71,6 +77,7 @@ header h2 {
     object-position: center;
     width: 100%;
     height: 100%;
+    vertical-align:bottom;
 }
 
 .title-display {
@@ -96,7 +103,7 @@ header h2 {
 .tier {
     display: grid;
     grid-template-columns: 10% 90%;
-    grid-column-gap: .25em; 
+    grid-column-gap: 0em; 
 }
 
 .tier-rank {
@@ -162,7 +169,7 @@ header h2 {
     }
     #header-img {
         position: absolute;
-        visibility: hidden;
+        visibility:flex
     }
     .thumbnail-container {
         width: 32%;
