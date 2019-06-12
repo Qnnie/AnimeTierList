@@ -152,6 +152,9 @@ header h2 {
 }
 
 @media only screen and (max-width: 800px) {
+    .anime {
+        display: block;
+    }
     .tier {
         display: block;
     }
