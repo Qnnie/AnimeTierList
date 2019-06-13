@@ -1,7 +1,8 @@
 query($name: String){
-  User(name: $name) {
-    avatar {
-      large
+    User(name: $name) {
+        avatar {
+            large
+        }
+        bannerImage
     }
-  }
 }

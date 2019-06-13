@@ -28,10 +28,13 @@ a {
 
 header {
     background: var(--Banner);
+    background-position: center;
+    background-size: cover;
     display: flex;
     max-height: 130px;
     justify-content: center;
     align-items: center;
+    text-shadow: 0 3px 3px rgba(0,0,0,0.8);
 }
 
 #header-img {

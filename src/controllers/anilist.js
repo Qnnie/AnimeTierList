@@ -7,6 +7,7 @@ const { json } = require("../utils");
 const router = express.Router();
 
 let userImage = '/images/mascot2.jpg';
+let userHeader = '#BB999C';
 
 const anilist = (query, variables) => {
     return json("https://graphql.anilist.co", {
@@ -73,6 +74,9 @@ const fetchUserProfile = async (name) => {
         return undefined;
     }
     userImage = data.User.avatar.large;
+    if (data.User.bannerImage != null) {
+        userHeader = `url('${data.User.bannerImage}')`;
+    }
 }
 
 router.get("/anilist/:user", async (req, res) => {
@@ -81,7 +85,7 @@ router.get("/anilist/:user", async (req, res) => {
         fetchUserProfile(user);
         const listEntries = await fetchTierLists(user, "anime");
         const animes = helpers.tallyAnimeScores(listEntries);
-        return res.render("tierList", { animes, user, userImage });
+        return res.render("tierList", { animes, user, userImage, userHeader });
     } catch (err) {
         return res.render("404", {
             error: "This anilist account does not exist or is void of rankings"
@@ -95,7 +99,7 @@ router.get("/anilist/manga/:user", async (req, res) => {
         fetchUserProfile(user);
         const listEntries = await fetchTierLists(user, "manga");
         const animes = helpers.tallyAnimeScores(listEntries);
-        return res.render("tierList", { animes, user, userImage });
+        return res.render("tierList", { animes, user, userImage, userHeader });
     } catch (err) {
         return res.render("404", {
             error: "This anilist account does not exist or is void of rankings"
