@@ -44,6 +44,7 @@ const transformAnime = mediaType => anime => ({
  * @param {TierListOptions} options
  */
 const fetchTierLists = async (user, mediaType) => {
+    fetchUserProfile(user);
     const query = fs
         .readFileSync(path.join(__dirname, "..", "graphql", "userList.graphql"))
         .toString();
@@ -82,7 +83,6 @@ const fetchUserProfile = async (name) => {
 router.get("/anilist/:user", async (req, res) => {
     try {
         const { user } = req.params;
-        fetchUserProfile(user);
         const listEntries = await fetchTierLists(user, "anime");
         const animes = helpers.tallyAnimeScores(listEntries);
         return res.render("tierList", { animes, user, userImage, userHeader });
@@ -96,7 +96,6 @@ router.get("/anilist/:user", async (req, res) => {
 router.get("/anilist/manga/:user", async (req, res) => {
     try {
         const { user } = req.params;
-        fetchUserProfile(user);
         const listEntries = await fetchTierLists(user, "manga");
         const animes = helpers.tallyAnimeScores(listEntries);
         return res.render("tierList", { animes, user, userImage, userHeader });
