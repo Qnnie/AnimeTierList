@@ -15,11 +15,6 @@ const DEFAULT_MAL_PARAMS = {
     type: "anime"
 };
 
-let userImage = '/images/mascot2.jpg';
-let userBackground = 'white';
-let userHeader = '#9e7381';
-let userCustomRatings = [];
-
 /**
  * Calculates the amount of requests required to
  * fetch a user's entire collection
@@ -30,7 +25,7 @@ const requiredRequestCount = totalAnimes =>
 
 const fetchWatchList = ({ user, type, totalAnimes }) => {
     const recurse = async (offset) => {
-        if (offset >= totalAnimes) {
+        if (offset >= totalAnimes.totalAnime) {
             return [];
         }
         // generate `maxRequestCount` amount of requests
@@ -61,8 +56,12 @@ const fetchMALProfile = username => {
     return text(`https://myanimelist.net/profile/${username}`).then(html => {
         const $ = cheerio.load(html);
         const elements = Array.from($(".anime .stats-status .di-ib.fl-r.lh10"));
-        userImage = $(".user-image.mb8 img").attr('src');
+        let userImage = $(".user-image.mb8 img").attr('src');
         userBio = $(".word-break").text();
+        let userBackground, userHeader, userCustomRatings, totalAnime;
+        
+        totalAnime = elements.reduce((all, elem) => all + Number(elem.children[0].data.replace(/,/g, "")), 0)
+
         const getBackgroundUrl = () => {
             let start = userBio.indexOf("{background}");
             let end = userBio.indexOf("{/background}");
@@ -84,7 +83,13 @@ const fetchMALProfile = username => {
         getBackgroundUrl();
         getHeaderColor();
         getCustomRatings();
-        return elements.reduce((all, elem) => all + Number(elem.children[0].data.replace(/,/g, "")), 0)
+        return {
+            userBackground,
+            userHeader,
+            userCustomRatings,
+            totalAnime,
+            userImage
+        }
     });
 };
 
@@ -110,7 +115,7 @@ const transformManga = manga => ({
     tier: helpers.getAnimeTier(manga.score)
 });
 
-const customRatings = (anime) => {
+const customRatings = (anime, {userCustomRatings}) => {
     for (let i=0; i<anime.length; i++) {
         switch(anime[i].score) {
             case 10: 
@@ -166,28 +171,30 @@ const fetchTierLists = async (user, { after, type } = DEFAULT_MAL_PARAMS) => {
 
 router.get("/mal/:user", async (req, res) => {
     const { user } = req.params;
+    const userProfile = await fetchMALProfile(user);
     const listEntries = await fetchTierLists(user);
-    if (userCustomRatings.length == 10) {
-        customRatings(listEntries);
+    if (userProfile.userCustomRatings.length == 10) {
+        customRatings(listEntries, userProfile);
     }
     const animes = helpers.tallyAnimeScores(listEntries);
     if (listEntries === undefined || listEntries.length == 0) {
         return res.render("404", { error: 'MAL Account does not exist, or is void of rankings' });
     }
-    return res.render("tierList", { animes, user, userImage, userBackground, userHeader });
+    return res.render("tierList", { animes, user, userProfile });
 });
 
 router.get("/mal/manga/:user", async (req, res) => {
     const { user } = req.params;
+    const userProfile = await fetchMALProfile(user);
     const listEntries = await fetchTierLists(user,{type:'manga'});
-    if (userCustomRatings.length == 10) {
-        customRatings(listEntries);
+    if (userProfile.userCustomRatings.length == 10) {
+        customRatings(listEntries, userProfile);
     }
     const animes = helpers.tallyAnimeScores(listEntries);
     if (listEntries === undefined || listEntries.length == 0) {
         return res.render("404", { error: 'MAL Account does not exist, or is void of rankings' });
     }
-    return res.render("tierList", { animes, user, userImage, userBackground, userHeader });
+    return res.render("tierList", { animes, user, userProfile });
 });
 
 module.exports = router;

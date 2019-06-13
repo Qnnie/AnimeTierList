@@ -6,9 +6,6 @@ const { json } = require("../utils");
 
 const router = express.Router();
 
-let userImage = '/images/mascot2.jpg';
-let userHeader = '#BB999C';
-
 const anilist = (query, variables) => {
     return json("https://graphql.anilist.co", {
         method: "POST",
@@ -44,7 +41,6 @@ const transformAnime = mediaType => anime => ({
  * @param {TierListOptions} options
  */
 const fetchTierLists = async (user, mediaType) => {
-    fetchUserProfile(user);
     const query = fs
         .readFileSync(path.join(__dirname, "..", "graphql", "userList.graphql"))
         .toString();
@@ -74,18 +70,24 @@ const fetchUserProfile = async (name) => {
         console.log('error');
         return undefined;
     }
-    userImage = data.User.avatar.large;
+    let userImage = data.User.avatar.large;
+    let userHeader;
     if (data.User.bannerImage != null) {
         userHeader = `url('${data.User.bannerImage}')`;
+    }
+    return {
+        userImage,
+        userHeader
     }
 }
 
 router.get("/anilist/:user", async (req, res) => {
     try {
         const { user } = req.params;
+        const userProfile = await fetchUserProfile(user);
         const listEntries = await fetchTierLists(user, "anime");
         const animes = helpers.tallyAnimeScores(listEntries);
-        return res.render("tierList", { animes, user, userImage, userHeader });
+        return res.render("tierList", { animes, user, userProfile });
     } catch (err) {
         return res.render("404", {
             error: "This anilist account does not exist or is void of rankings"
@@ -96,9 +98,10 @@ router.get("/anilist/:user", async (req, res) => {
 router.get("/anilist/manga/:user", async (req, res) => {
     try {
         const { user } = req.params;
+        const userProfile = await fetchUserProfile(user);
         const listEntries = await fetchTierLists(user, "manga");
         const animes = helpers.tallyAnimeScores(listEntries);
-        return res.render("tierList", { animes, user, userImage, userHeader });
+        return res.render("tierList", { animes, user, userProfile });
     } catch (err) {
         return res.render("404", {
             error: "This anilist account does not exist or is void of rankings"
