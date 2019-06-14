@@ -161,11 +161,19 @@ header h2 {
     .tier {
         display: block;
     }
+    .tier-rank {
+        min-height: 50px;
+    }
+
+    header {
+        min-height: 70px;
+    }
+
     header h2 {
         font-size: 2rem;
     }
     .rank {
-        font-size: 3.5rem;
+        font-size: 2rem;
         position: absolute;
         left: 50%;
         top: 50%;
@@ -177,8 +185,8 @@ header h2 {
         visibility:flex
     }
     .thumbnail-container {
-        width: 32%;
-        height: 200px;
+        width: 18%;
+        height: 112px;
     }
 }
 
