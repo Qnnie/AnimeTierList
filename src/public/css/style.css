@@ -40,8 +40,14 @@ header {
 #header-img {
     position: absolute;
     left: 0;
+    top: 0;
     width: 75px;
     height: auto;
+    transition: all .3s;
+}
+
+#header-img:hover {
+    opacity: 0.6;
 }
 
 .anime {
