@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito&display=swap');
 
 :root {
-    --Banner: #BB999C;
+    --Banner: #313131;
     --SS: rgb(146, 184, 199);
     --S: #6E44FF;
     --A: #B892FF;
@@ -27,6 +27,7 @@ a {
 }
 
 header {
+    position: relative;
     background: var(--Banner);
     background-position: center;
     background-size: cover;
@@ -35,6 +36,21 @@ header {
     justify-content: center;
     align-items: center;
     text-shadow: 0 3px 3px rgba(0,0,0,0.8);
+}
+
+header i {
+    position: absolute;
+    right: 10px;
+    bottom: 5px;
+}
+
+header i:hover {
+    opacity: .6;
+    cursor: pointer;
+}
+
+header a {
+    font-size: 2em;
 }
 
 #header-img {

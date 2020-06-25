@@ -56,7 +56,7 @@ const fetchMALProfile = username => {
     return text(`https://myanimelist.net/profile/${username}`).then(html => {
         const $ = cheerio.load(html);
         const elements = Array.from($(".anime .stats-status .di-ib.fl-r.lh10"));
-        let userImage = $(".user-image.mb8 img").attr('src');
+        let userImage = $(".user-image.mb8 img").attr('data-src');
         userBio = $(".word-break").text();
         let userBackground, userHeader, userCustomRatings, totalAnime;
         
