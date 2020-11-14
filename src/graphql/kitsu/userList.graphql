@@ -7,7 +7,6 @@ query($user: String!, $mediaType: MediaTypeEnum!, $endCursor: String) {
           endCursor
         }
         nodes {
-          id
           rating
           media {
             ... on Media {
