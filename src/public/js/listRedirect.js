@@ -26,7 +26,7 @@ document
     .addEventListener("click", () => {
         if (defaultSearch) {
             navigate(name => `/mal/${name}`)
-        } 
+        }
         else {
             navigate(name => `/mal/manga/${name}`)
         }
@@ -42,6 +42,17 @@ document
             navigate(name => `/anilist/manga/${name}`)
         }
     });
+
+document
+    .getElementById("searchKitsu")
+    .addEventListener("click", () => {
+        if (defaultSearch) {
+            navigate(name => `/kitsu/${name}`)
+        }
+        else {
+            navigate(name => `/kitsu/manga/${name}`)
+        }
+    })
 
 const toggleSearchState = () => {
         let anime = document.getElementById("anime-search");

@@ -1,0 +1,29 @@
+query($user: String!, $mediaType: MediaTypeEnum!, $endCursor: String) {
+  User: findProfileBySlug(slug: $user) {
+    library {
+    	completed(mediaType: $mediaType, first: 100, after: $endCursor) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+        nodes {
+          id
+          rating
+          media {
+            ... on Media {
+              id
+              posterImage {
+                medium: views(names: "medium") {
+                  url
+                }
+              }
+              titles {
+                canonical
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
