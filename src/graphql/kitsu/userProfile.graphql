@@ -1,0 +1,15 @@
+query($name: String!) {
+  User: findProfileBySlug(slug: $name) {
+    id
+    avatarImage {
+      large: views(names: "large") {
+        url
+      }
+    }
+    bannerImage {
+      large: views(names:"large") {
+        url
+      }
+    }
+  }
+}
