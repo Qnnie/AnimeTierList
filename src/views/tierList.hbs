@@ -19,7 +19,7 @@
         {{#> tier tier=this.tier}}
             {{#each this.animes}}
                 <a href="{{this.url}}" target="_blank"><div class="thumbnail-container">
-                <img class="thumbnail" src='{{this.image}}'><div class="title-display">{{this.title}}</div></img></div></a>        
+                <img class="thumbnail" src='{{this.image}}' loading="lazy"><div class="title-display">{{this.title}}</div></img></div></a>
             {{/each}}
         {{/tier}}
     {{/if}}
