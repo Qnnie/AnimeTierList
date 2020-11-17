@@ -13,9 +13,9 @@
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
     "express": "^4.17.1",
-    "hbs": "^4.0.4",
+    "hbs": "^4.1.1",
     "mal-scraper": "^2.6.2",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "nodemon": "^1.19.1"

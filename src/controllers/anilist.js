@@ -42,7 +42,7 @@ const transformAnime = mediaType => anime => ({
  */
 const fetchTierLists = async (user, mediaType) => {
     const query = fs
-        .readFileSync(path.join(__dirname, "..", "graphql", "userList.graphql"))
+        .readFileSync(path.join(__dirname, "..", "graphql", "anilist", "userList.graphql"))
         .toString();
 
     const { data, errors } = await anilist(query, {
@@ -61,11 +61,11 @@ const fetchTierLists = async (user, mediaType) => {
 
 const fetchUserProfile = async (name) => {
     const query = fs
-    .readFileSync(path.join(__dirname, "..", "graphql", "userProfile.graphql"))
+    .readFileSync(path.join(__dirname, "..", "graphql", "anilist", "userProfile.graphql"))
     .toString();
 
     const { data, errors} = await anilist(query, {name});
-    
+
     if (errors && errors.length) {
         console.log('error');
         return undefined;
